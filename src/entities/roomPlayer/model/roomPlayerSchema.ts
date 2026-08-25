@@ -1,11 +1,11 @@
 import z from "zod";
-import { roleRoomPlayerArr } from "./constants";
+import { roomPlayerRoleOptions } from "./constants";
 
 export const roomPlayerSchema = z.object({
   id: z.string(),
   roomId: z.string(),
   playerId: z.string(),
-  role: z.enum(roleRoomPlayerArr),
+  role: z.enum(roomPlayerRoleOptions),
   isReady: z.boolean(),
 });
 

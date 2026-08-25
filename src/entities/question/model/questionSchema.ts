@@ -1,33 +1,36 @@
-import { difficultyOptions, topicOptions } from "@/shared/config/quizOptions";
 import z from "zod";
 
-const answerOptionSchema = z.object({
+import {
+  questionDifficultyOptions,
+  topicOptions,
+} from "@/shared/config/quizOptions";
+import { answerOptionsSchema } from "./questionValueSchema";
+
+const baseQuestionSchema = z.object({
   id: z.string(),
 
   text: z.string().trim().min(1),
-});
 
-export const baseQuestionSchema = z.object({
-  id: z.string(),
+  answerOptions: answerOptionsSchema,
 
-  text: z.string().trim().min(1),
-
-  answerOptions: z.array(answerOptionSchema).length(4),
-
-  difficulty: z.enum(difficultyOptions),
+  difficulty: z.enum(questionDifficultyOptions),
 
   topic: z.enum(topicOptions),
 });
 
+export const activeQuestionSchema = baseQuestionSchema;
+
 export const questionSchema = baseQuestionSchema
   .extend({
-    correctOptionId: z.string(),
+    correctOptionId: z.string().min(1),
+
     explanation: z.string().trim().min(1),
   })
   .superRefine((question, ctx) => {
     const correctOptionExists = question.answerOptions.some(
       (option) => option.id === question.correctOptionId,
     );
+
     if (!correctOptionExists) {
       ctx.addIssue({
         code: "custom",
@@ -39,4 +42,4 @@ export const questionSchema = baseQuestionSchema
 
 export type TQuestion = z.infer<typeof questionSchema>;
 
-export type TActiveQuestion = z.infer<typeof baseQuestionSchema>;
+export type TActiveQuestion = z.infer<typeof activeQuestionSchema>;

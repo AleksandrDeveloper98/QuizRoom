@@ -1,4 +1,13 @@
-export const difficultyOptions = ["easy", "medium", "hard", "mixed"] as const;
+export const roundsCountOptions = [5, 10, 15] as const;
+
+export const answerTimeSecOptions = [10, 15, 20] as const;
+
+export const questionDifficultyOptions = ["easy", "medium", "hard"] as const;
+
+export const gameDifficultyOptions = [
+  ...questionDifficultyOptions,
+  "mixed",
+] as const;
 
 export const topicOptions = [
   "general",

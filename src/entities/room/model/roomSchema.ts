@@ -1,19 +1,25 @@
 import z from "zod";
-import { accessRoomArr, statusRoomArr } from "./constants";
+import { roomAccessOptions, roomStatusOptions } from "./constants";
+
+import { maxPlayersSchema } from "./roomValueSchemas";
+
+import {
+  gameDifficultyOptions,
+  topicOptions,
+} from "@/shared/config/quizOptions";
 import {
   answerTimeSecSchema,
-  maxPlayersSchema,
   roundsCountSchema,
-} from "./roomValueSchemas";
-import { difficultyOptions, topicOptions } from "@/shared/config/quizOptions";
+} from "@/shared/config/quizValueSchemas";
+
+const roomNameSchema = z
+  .string()
+  .trim()
+  .min(1, "Поле не может быть пустым")
+  .max(15, "Максимум 15 символов");
 
 export const roomSettingsSchema = z.object({
-  name: z
-    .string()
-    .trim()
-    .min(1, "Поле не может быть пустым")
-    .max(15, "Максимум 15 символов")
-    .optional(),
+  name: roomNameSchema,
 
   maxPlayers: maxPlayersSchema,
 
@@ -23,9 +29,9 @@ export const roomSettingsSchema = z.object({
 
   topic: z.enum(topicOptions),
 
-  difficulty: z.enum(difficultyOptions),
+  difficulty: z.enum(gameDifficultyOptions),
 
-  access: z.enum(accessRoomArr),
+  access: z.enum(roomAccessOptions),
 });
 
 export const createRoomSchema = roomSettingsSchema
@@ -44,8 +50,7 @@ export const createRoomSchema = roomSettingsSchema
 
 export const roomSchema = roomSettingsSchema.extend({
   id: z.string(),
-  name: z.string(),
-  status: z.enum(statusRoomArr),
+  status: z.enum(roomStatusOptions),
   createdAt: z.iso.datetime(),
 });
 

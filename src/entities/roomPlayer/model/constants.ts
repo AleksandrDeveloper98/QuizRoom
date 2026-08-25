@@ -1,1 +1,1 @@
-export const roleRoomPlayerArr = ["host", "player"] as const;
+export const roomPlayerRoleOptions = ["host", "player"] as const;

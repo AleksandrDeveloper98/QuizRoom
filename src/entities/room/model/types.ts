@@ -1,3 +1,3 @@
-import { statusRoomArr } from "./constants";
+import { roomStatusOptions } from "./constants";
 
-export type TStatusRoom = (typeof statusRoomArr)[number];
+export type TStatusRoom = (typeof roomStatusOptions)[number];

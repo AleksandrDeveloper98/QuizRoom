@@ -1,5 +1,5 @@
-export const roundStatusOptions = [
-  "pending",
-  "active",
-  "finished",
-] as const;
+export const roundStatus = {
+  pending: "pending",
+  active: "active",
+  finished: "finished",
+} as const;
