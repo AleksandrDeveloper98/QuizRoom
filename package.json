@@ -11,12 +11,14 @@
     "typecheck:watch": "tsc -b --noEmit --watch"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.102.4",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "zod": "^4.4.3"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@tanstack/react-query-devtools": "^5.102.4",
     "@types/node": "^24.13.3",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",

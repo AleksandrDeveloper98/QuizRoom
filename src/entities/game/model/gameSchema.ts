@@ -24,8 +24,6 @@ export const baseGameSchema = z.object({
 
   difficulty: z.enum(gameDifficultyOptions),
 
-  status: z.enum(gameStatusOptions),
-
   startedAt: z.iso.datetime(),
 });
 
@@ -41,7 +39,7 @@ export const finishedGameSchema = baseGameSchema.extend({
   finishedAt: z.iso.datetime(),
 });
 
-const gameSchema = z.discriminatedUnion("status", [
+export const gameSchema = z.discriminatedUnion("status", [
   playingGameSchema,
   finishedGameSchema,
 ]);
