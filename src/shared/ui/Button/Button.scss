@@ -1,0 +1,17 @@
+.button {
+  background-color: var(--color-violet);
+  color: var(--color-white);
+
+  padding: 5px 16px;
+  border-radius: var(--border-radius-m);
+  border: none;
+
+  @include hover {
+    opacity: 0.9;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
