@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
 
-export type QueryProviderProps = {
+export type TQueryProviderProps = {
   children: ReactNode;
 };

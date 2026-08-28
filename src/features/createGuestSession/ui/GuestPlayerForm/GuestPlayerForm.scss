@@ -1,0 +1,23 @@
+.guest-player-form {
+  background-color: var(--color-graphite-black);
+  padding: 28px;
+  border: var(--border);
+  border-radius: var(--border-radius-l);
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    row-gap: 25px;
+  }
+
+  &__field,
+  &__button {
+    min-height: 52px;
+  }
+
+  &__error {
+    color: var(--color-red);
+    min-height: 18px;
+    font-size: 12px;
+  }
+}

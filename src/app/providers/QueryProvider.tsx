@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import type { QueryProviderProps } from "./types";
+import type { TQueryProviderProps } from "./types";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -13,7 +13,7 @@ const queryClient = new QueryClient({
   },
 });
 
-const QueryProvider = (props: QueryProviderProps) => {
+const QueryProvider = (props: TQueryProviderProps) => {
   const { children } = props;
   return (
     <QueryClientProvider client={queryClient}>

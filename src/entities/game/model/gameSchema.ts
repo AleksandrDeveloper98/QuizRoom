@@ -9,7 +9,7 @@ import {
 import {
   answerTimeSecSchema,
   roundsCountSchema,
-} from "@/shared/config/quizValueSchemas";
+} from "@/shared/lib/validation/quizValueSchemas";
 
 export const baseGameSchema = z.object({
   id: z.string(),

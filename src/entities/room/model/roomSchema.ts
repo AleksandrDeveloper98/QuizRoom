@@ -10,7 +10,7 @@ import {
 import {
   answerTimeSecSchema,
   roundsCountSchema,
-} from "@/shared/config/quizValueSchemas";
+} from "@/shared/lib/validation/quizValueSchemas";
 
 const roomNameSchema = z
   .string()
