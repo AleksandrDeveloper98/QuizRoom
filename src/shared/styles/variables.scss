@@ -1,0 +1,22 @@
+:root {
+  --color-white: #ffffff;
+  --color-transparent-white: #ffffff12;
+
+  --color-black: #000000;
+  --color-graphite-black: #141519;
+  --color-gray: #8b8f9b;
+  --color-red: #dc2626;
+
+  --color-violet: #7c3aed;
+  --color-lavender-violet: #a78bfa;
+
+  --border-radius-s: 6px;
+  --border-radius-m: 10px;
+  --border-radius-l: 16px;
+
+  --border: 1px solid var(--color-transparent-white);
+  --border-lavender-violet: 3px solid var(--color-lavender-violet);
+  --border-red: 3px solid var(--color-red);
+
+  --font-family-base: "Inter", sans-serif;
+}

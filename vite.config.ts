@@ -5,9 +5,18 @@ import { fileURLToPath, URL } from "url";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
+    },
+  },
+
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@use "@/shared/styles/helpers/index.scss" as *;`,
+      },
     },
   },
 });
