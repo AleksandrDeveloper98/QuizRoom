@@ -72,6 +72,14 @@ svg * {
   transition-duration: var(--transition-duration);
 }
 
+a {
+  color: inherit;
+
+  &[class] {
+    text-decoration: none;
+  }
+}
+
 :focus-visible {
   outline: 2px dashed var(--color-lavender-violet);
   outline-offset: 1px;

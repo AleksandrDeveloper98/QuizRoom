@@ -1,0 +1,10 @@
+.protected-layout {
+  @include flex-center();
+  flex-direction: column;
+  row-gap: 20px;
+  min-height: 100dvh;
+
+  &__action {
+    height: 50px;
+  }
+}

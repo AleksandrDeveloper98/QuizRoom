@@ -1,12 +1,10 @@
 import { Outlet } from "react-router-dom";
 import Header from "@/widgets/Header";
-
-import "./MainLayout.scss";
 import Footer from "@/widgets/Footer";
 
-const MainLayout = () => {
-  
+import "./MainLayout.scss";
 
+const MainLayout = () => {
   return (
     <div className="main-layout">
       <div className="main-layout__inner">
