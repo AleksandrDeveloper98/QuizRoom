@@ -1,3 +1,4 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import Field from "@/shared/ui/Field";
 import "./GuestPlayerForm.scss";
 import Button from "@/shared/ui/Button";
@@ -6,10 +7,10 @@ import {
   type TCreateGuestPlayer,
   createGuestPlayerSchema,
 } from "@/entities/guestPlayer/model/guestPlayerSchema";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useCreateGuestSessionMutation } from "../../api/guestSessionMutation";
+
 import { useNavigate } from "react-router-dom";
 import { routes } from "@/shared/constants/routes";
+import { useCreateGuestSessionMutation } from "@/features/guestSession/api/guestSessionMutation";
 
 const GuestPlayerForm = () => {
   const createGuestSessionMutation = useCreateGuestSessionMutation();

@@ -1,6 +1,5 @@
 .welcome-page {
-  @include flex-center();
-  flex-direction: column;
+  @include flex-center();  
   min-height: 100dvh;
 
   &__inner {
@@ -12,9 +11,5 @@
     display: grid;
     row-gap: 10px;
     text-align: center;
-  }
-
-  &__title-half {
-    color: var(--color-lavender-violet);
   }
 }
