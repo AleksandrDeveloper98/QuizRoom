@@ -1,0 +1,18 @@
+.header {
+  border-bottom: var(--border);
+
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom-right-radius: var(--border-radius-l);
+    border-bottom-left-radius: var(--border-radius-l);
+    padding: fluid(20, 10);
+
+    box-shadow: 0 1px 40px 6px var(--color-violet);
+  }
+
+  &__brand {
+    @include fluid-text(30, 20);
+  }
+}
