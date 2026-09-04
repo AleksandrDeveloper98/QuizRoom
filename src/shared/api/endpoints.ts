@@ -7,4 +7,8 @@ export const API_ENDPOINTS = {
     root: "/session",
     me: "/session/me",
   },
+
+  rooms: {
+    root: "/rooms",
+  },
 } as const;

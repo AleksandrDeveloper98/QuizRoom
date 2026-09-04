@@ -1,10 +1,11 @@
 import z from "zod";
-import { roomAccessOptions, roomStatusOptions } from "./constants";
+import { roomStatusOptions } from "./constants";
 
 import { maxPlayersSchema } from "./roomValueSchemas";
 
 import {
   gameDifficultyOptions,
+  roomAccessOptions,
   topicOptions,
 } from "@/shared/config/quizOptions";
 import {
@@ -49,7 +50,7 @@ export const createRoomSchema = roomSettingsSchema
   });
 
 export const roomSchema = roomSettingsSchema.extend({
-  id: z.string(),
+  id: z.uuid(),
   status: z.enum(roomStatusOptions),
   createdAt: z.iso.datetime(),
 });

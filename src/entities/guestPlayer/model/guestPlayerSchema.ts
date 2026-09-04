@@ -9,7 +9,7 @@ export const createGuestPlayerSchema = z.object({
 });
 
 export const guestPlayerSchema = createGuestPlayerSchema.extend({
-  id: z.string(),
+  id: z.uuid(),
 });
 
 export type TGuestPlayer = z.infer<typeof guestPlayerSchema>;

@@ -1,5 +1,6 @@
 import type {
   gameDifficultyOptions,
+  roomAccessOptions,
   topicOptions,
 } from "@/shared/config/quizOptions";
 
@@ -11,8 +12,6 @@ export const difficultyOptionsLabels = {
   hard: "Сложно",
   mixed: "Смешанная",
 } satisfies Record<(typeof gameDifficultyOptions)[number], string>;
-
-export const roomAccessOptions = ["public", "private"] as const;
 
 export const accessRoomLabels = {
   public: "Публичная",

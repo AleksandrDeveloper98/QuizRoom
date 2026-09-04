@@ -4,6 +4,8 @@ export const answerTimeSecOptions = [10, 15, 20] as const;
 
 export const questionDifficultyOptions = ["easy", "medium", "hard"] as const;
 
+export const roomAccessOptions = ["public", "private"] as const;
+
 export const gameDifficultyOptions = [
   ...questionDifficultyOptions,
   "mixed",
