@@ -1,7 +1,7 @@
-
+import Rooms from "@/widgets/Rooms";
 
 const RoomsPage = () => {
-  return <div>RoomsPage</div>;
+  return <Rooms />;
 };
 
 export default RoomsPage;

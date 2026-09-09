@@ -2,5 +2,6 @@ export const routes = {
   welcome: "/",
 
   rooms: "/rooms",
-  createRoom: "/create",
+  createRoom: `/rooms/create`,
+  roomById: (roomId: string) => `/rooms/${roomId}`,
 } as const;

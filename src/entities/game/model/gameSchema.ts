@@ -1,5 +1,4 @@
 import z from "zod";
-import { gameStatusOptions } from "./constants";
 
 import {
   gameDifficultyOptions,
@@ -10,6 +9,7 @@ import {
   answerTimeSecSchema,
   roundsCountSchema,
 } from "@/shared/lib/validation/quizValueSchemas";
+import { gameStatusOptions } from "@/shared/config/quizOptions/quizOptions";
 
 export const baseGameSchema = z.object({
   id: z.string(),

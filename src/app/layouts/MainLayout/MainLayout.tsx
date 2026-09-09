@@ -9,7 +9,7 @@ const MainLayout = () => {
     <div className="main-layout">
       <div className="main-layout__inner">
         <Header />
-        <main className="main-layout__main container">
+        <main className="main-layout__main">
           <Outlet />
         </main>
         <Footer />

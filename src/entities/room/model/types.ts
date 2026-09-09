@@ -1,10 +1,17 @@
-import type { roomAccessOptions } from "@/shared/config/quizOptions";
+import type {
+  roomAccessOptions,
+  roomStatusOptions,
+} from "@/shared/config/quizOptions";
 
-type TAccessRoom = (typeof roomAccessOptions)[number];
+export type TRoomAccess = (typeof roomAccessOptions)[number];
+
+export type TRoomStatus = (typeof roomStatusOptions)[number];
+
+export type TRoomDisplayStatus = TRoomStatus | "filled";
 
 export type TRoomsListParams = {
   page: number;
   pageSize: number;
   search?: string;
-  access?: TAccessRoom;
+  access?: TRoomAccess;
 };

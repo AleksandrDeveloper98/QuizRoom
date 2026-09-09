@@ -1,14 +1,13 @@
 import type {
   gameDifficultyOptions,
   roomAccessOptions,
-  topicOptions,
+  topicOptions,  
 } from "@/shared/config/quizOptions";
-
-export const maxPlayersOptions = [2, 3, 4] as const;
+import type { TRoomDisplayStatus } from "./types";
 
 export const difficultyOptionsLabels = {
   easy: "Легко",
-  medium: "Среднее",
+  medium: "Средне",
   hard: "Сложно",
   mixed: "Смешанная",
 } satisfies Record<(typeof gameDifficultyOptions)[number], string>;
@@ -18,12 +17,11 @@ export const accessRoomLabels = {
   private: "Приватная",
 } satisfies Record<(typeof roomAccessOptions)[number], string>;
 
-export const roomStatusOptions = ["playing", "waiting"] as const;
-
-export const statusRoomLabels = {
+export const roomDisplayStatusLabels = {
   playing: "Идёт игра",
   waiting: "Ожидание",
-} satisfies Record<(typeof roomStatusOptions)[number], string>;
+  filled: "Заполнено",
+} satisfies Record<TRoomDisplayStatus, string>;
 
 export const topicOptionsLabels = {
   general: "Общие знания",

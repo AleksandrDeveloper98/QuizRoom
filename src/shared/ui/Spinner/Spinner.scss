@@ -1,4 +1,6 @@
 .spinner {
+  display: inline-block;
+  flex-shrink: 0;
   border-radius: 50%;
   outline: 2px dashed var(--color-white);
   animation:

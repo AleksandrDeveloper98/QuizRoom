@@ -7,6 +7,7 @@ import ProtectedLayout from "../layouts/ProtectedLayout";
 
 const WelcomePage = lazy(() => import("@/pages/WelcomePage"));
 const RoomsPage = lazy(() => import("@/pages/RoomsPage"));
+const CreateRoomPage = lazy(() => import("@/pages/CreateRoomPage"));
 
 const Routing = () => {
   return (
@@ -17,6 +18,7 @@ const Routing = () => {
         <Route element={<ProtectedLayout />}>
           <Route element={<MainLayout />}>
             <Route path={routes.rooms} element={<RoomsPage />} />
+            <Route path={routes.createRoom} element={<CreateRoomPage />} />
           </Route>
         </Route>
       </Routes>

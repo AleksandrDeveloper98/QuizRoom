@@ -1,11 +1,11 @@
 import z from "zod";
-import { roomStatusOptions } from "./constants";
 
 import { maxPlayersSchema } from "./roomValueSchemas";
 
 import {
   gameDifficultyOptions,
   roomAccessOptions,
+  roomStatusOptions,
   topicOptions,
 } from "@/shared/config/quizOptions";
 import {

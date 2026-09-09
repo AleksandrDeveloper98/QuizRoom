@@ -1,0 +1,17 @@
+.rooms-list {
+  --columns: 3;
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(var(--columns), 1fr);
+    gap: 25px;
+
+    @include tablet {
+      --columns: 2;
+    }
+
+    @include mobile {
+      --columns: 1;
+    }
+  }
+}

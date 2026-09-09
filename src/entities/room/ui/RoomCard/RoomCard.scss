@@ -1,0 +1,40 @@
+.room-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-graphite-black);
+  border: var(--border);
+  border-radius: var(--border-radius-l);
+  padding: 15px;
+
+  @include hover{
+    border-color: var(--color-lavender-violet);
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 10px;
+    padding-bottom: 10px;
+  }
+
+  &__title {
+    display: flex;
+    column-gap: 5px;
+    color: var(--color-white);
+    font-weight: 600;
+  }
+
+  &__description {
+    display: flex;
+    column-gap: 20px;
+    padding-bottom: 10px;
+  }
+
+  &__extra {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    column-gap: 10px;
+  }
+}
