@@ -32,3 +32,9 @@
   width: $size;
   height: $size;
 }
+
+@mixin focus-visible {
+  outline: 2px dashed var(--color-lavender-violet);
+  outline-offset: 1px;
+  transition-duration: 0s !important;
+}

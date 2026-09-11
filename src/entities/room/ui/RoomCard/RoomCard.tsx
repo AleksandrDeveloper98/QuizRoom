@@ -3,15 +3,12 @@ import { routes } from "@/shared/constants/routes";
 import Icon from "@/shared/ui/Icon";
 import LockIcon from "@/shared/assets/icons/lock.svg?react";
 import Badge from "@/shared/ui/Badge";
-import {
-  difficultyOptionsLabels,
-  roomDisplayStatusLabels,
-  topicOptionsLabels,
-} from "@/entities/room/model/constants";
+import { roomDisplayStatusLabels } from "@/entities/room/model/constants";
 import { roomCardStatus } from "./constants";
 import type { TRoomCardProps } from "./types";
 import "./RoomCard.scss";
 import type { TRoomDisplayStatus } from "../../model/types";
+import { difficultyOptionsLabels, topicOptionsLabels } from "@/shared/config/quizOptions/quizOptions";
 
 const RoomCard = ({ room }: TRoomCardProps) => {
   const {
