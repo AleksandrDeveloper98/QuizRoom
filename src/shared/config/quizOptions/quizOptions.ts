@@ -18,12 +18,12 @@ export const difficultyOptionsLabels = {
   mixed: "Смешанная",
 } satisfies Record<(typeof gameDifficultyOptions)[number], string>;
 
-export const roomAccessOptions = ["public", "private"] as const;
+export const accessRoomOptions = ["public", "private"] as const;
 
 export const accessRoomLabels = {
   public: "Публичная",
   private: "Приватная",
-} satisfies Record<(typeof roomAccessOptions)[number], string>;
+} satisfies Record<(typeof accessRoomOptions)[number], string>;
 
 export const roomStatusOptions = ["playing", "waiting"] as const;
 

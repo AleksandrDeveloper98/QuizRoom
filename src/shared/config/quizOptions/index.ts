@@ -2,7 +2,7 @@ export {
   answerTimeSecOptions,
   gameDifficultyOptions,
   questionDifficultyOptions,
-  roomAccessOptions,
+  accessRoomOptions,
   roundsCountOptions,
   topicOptions,
   roomStatusOptions,

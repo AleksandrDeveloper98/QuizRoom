@@ -1,9 +1,9 @@
 import type {
-  roomAccessOptions,
+  accessRoomOptions,
   roomStatusOptions,
 } from "@/shared/config/quizOptions";
 
-export type TRoomAccess = (typeof roomAccessOptions)[number];
+export type TRoomAccess = (typeof accessRoomOptions)[number];
 
 export type TRoomStatus = (typeof roomStatusOptions)[number];
 

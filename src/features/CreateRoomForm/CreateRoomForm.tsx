@@ -7,7 +7,7 @@ import {
   difficultyOptionsLabels,
   gameDifficultyOptions,
   maxPlayersOptions,
-  roomAccessOptions,
+  accessRoomOptions,
   roundsCountOptions,
   topicOptions,
   topicOptionsLabels,
@@ -161,7 +161,7 @@ const CreateRoomForm = () => {
             <OptionGroup
               name={field.name}
               title="Доступ"
-              options={roomAccessOptions}
+              options={accessRoomOptions}
               getLabel={(access) => accessRoomLabels[access]}
               value={field.value}
               onChange={field.onChange}
