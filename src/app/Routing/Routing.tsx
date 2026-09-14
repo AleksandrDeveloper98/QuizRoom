@@ -6,6 +6,7 @@ import PageLoader from "@/shared/ui/PageLoader";
 import ProtectedLayout from "../layouts/ProtectedLayout";
 
 const WelcomePage = lazy(() => import("@/pages/WelcomePage"));
+const RoomPage = lazy(() => import("@/pages/RoomPage"));
 const RoomsPage = lazy(() => import("@/pages/RoomsPage"));
 const CreateRoomPage = lazy(() => import("@/pages/CreateRoomPage"));
 
@@ -17,6 +18,7 @@ const Routing = () => {
 
         <Route element={<ProtectedLayout />}>
           <Route element={<MainLayout />}>
+            <Route path={routes.room} element={<RoomPage />} /> 
             <Route path={routes.rooms} element={<RoomsPage />} />
             <Route path={routes.createRoom} element={<CreateRoomPage />} />
           </Route>

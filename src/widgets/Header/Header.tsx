@@ -1,9 +1,9 @@
 import Logo from "@/shared/ui/Logo";
 
-import "./Header.scss";
 import { useCurrentGuestPlayer } from "@/entities/guestPlayer/api/guestPlayerQueries";
 import Spinner from "@/shared/ui/Spinner";
 import type { ReactNode } from "react";
+import "./Header.scss";
 
 const Header = () => {
   const { data: currentPlayer, isPending, isError } = useCurrentGuestPlayer();
@@ -19,9 +19,7 @@ const Header = () => {
   return (
     <header className="header">
       <div className="header__inner container">
-        <div className="header__brand">
-          <Logo />
-        </div>
+        <Logo className="header__logo" />
         <div className="header__info">
           <p className="header__name">{playerContent} </p>
         </div>

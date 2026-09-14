@@ -1,0 +1,52 @@
+.option-group {
+  display: grid;
+  row-gap: 15px;
+
+  &__list {
+    display: flex;
+    gap: 8px;
+    border: var(--border);
+    border-radius: var(--border-radius-m);
+    padding: 5px;
+    flex-wrap: wrap;
+  }
+
+  &__item {
+    flex: 1;
+  }
+
+  &__option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 48px;
+    min-height: 40px;
+    padding-inline: 16px;
+    border: 3px solid transparent;
+    border-radius: 8px;
+    text-wrap: nowrap;
+  }
+
+  &__input:not(:checked):not(:disabled) + &__option {
+    @include hover {
+      border-color: var(--color-lavender-violet);
+      color: var(--color-white);
+    }
+  }
+
+  &__input:disabled + &__option {
+    cursor: default;
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  &__input:checked + &__option {
+    background-color: var(--color-violet);
+    color: var(--color-white);
+    cursor: default;
+  }
+
+  &__input:focus-visible + &__option {
+    @include focus-visible;
+  }
+}

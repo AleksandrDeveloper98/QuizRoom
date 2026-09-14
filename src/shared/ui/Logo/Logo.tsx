@@ -1,10 +1,16 @@
+import clsx from "clsx";
 import "./Logo.scss";
+import type { TLogoProps } from "./types";
+import { Link } from "react-router-dom";
+import { routes } from "@/shared/constants/routes";
 
-const Logo = () => {
+const Logo = (props: TLogoProps) => {
+  const { className } = props;
+
   return (
-    <span className="logo">
+    <Link to={routes.rooms}  className={clsx("logo", className)}>
       Quiz<span className="logo__half">Room</span>
-    </span>
+    </Link>
   );
 };
 

@@ -2,12 +2,35 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--color-violet);
-  color: var(--color-white);
 
   padding: 5px 16px;
   border-radius: var(--border-radius-m);
-  border: none;
+  border: 3px solid transparent;
+
+  &--violet {
+    background-color: var(--color-violet);
+    color: var(--color-white);
+  }
+
+  &--dark {
+    background-color: var(--color-graphite-black);
+    color: var(--color-gray);
+
+    @include hover {
+      border: var(--border-lavender-violet);
+      color: var(--color-white);
+    }
+  }
+
+  &--classic {
+    background-color: transparent;
+    color: var(--color-gray);
+    padding: 0;
+
+    @include hover {
+      color: var(--color-lavender-violet);
+    }
+  }
 
   @include hover {
     opacity: 0.9;

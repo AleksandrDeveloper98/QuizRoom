@@ -4,13 +4,17 @@ import "./Button.scss";
 import clsx from "clsx";
 
 const Button = (props: TButtonProps) => {
-  const { className, children, ...rest } = props;
+  const { variant = "violet", className, children, ...rest } = props;
 
   if (rest.to !== undefined) {
     const { to, ...linkProps } = rest;
 
     return (
-      <Link className={clsx(className, "button")} to={to} {...linkProps}>
+      <Link
+        className={clsx(className, "button", `button--${variant}`)}
+        to={to}
+        {...linkProps}
+      >
         {children}
       </Link>
     );
@@ -19,7 +23,11 @@ const Button = (props: TButtonProps) => {
   const { type = "button", ...buttonProps } = rest;
 
   return (
-    <button className={clsx(className, "button")} type={type} {...buttonProps}>
+    <button
+      className={clsx(className, "button", `button--${variant}`)}
+      type={type}
+      {...buttonProps}
+    >
       {children}
     </button>
   );

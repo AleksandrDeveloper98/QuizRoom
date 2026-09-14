@@ -3,6 +3,7 @@ import { roomsListSchema, type TRoomsList } from "../model/roomsListSchema";
 import type { TRoomsListParams } from "../model/types";
 import { API_BASE_URL } from "@/shared/api/baseUrl";
 import { API_ENDPOINTS } from "@/shared/api/endpoints";
+import { roomSchema, type TCreateRoom, type TRoom } from "../model/roomSchema";
 
 export const roomApi = {
   getList: async (params: TRoomsListParams): Promise<TRoomsList> => {
@@ -27,5 +28,17 @@ export const roomApi = {
     );
 
     return roomsListSchema.parse(data);
+  },
+
+  create: async (room: TCreateRoom): Promise<TRoom> => {
+    const data = await httpClient(
+      `${API_BASE_URL}${API_ENDPOINTS.rooms.root}`,
+      {
+        method: "POST",
+        body: JSON.stringify(room),
+      },
+    );
+
+    return roomSchema.parse(data);
   },
 };
