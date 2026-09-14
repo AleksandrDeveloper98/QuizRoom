@@ -2,16 +2,17 @@ import Field from "@/shared/ui/Field";
 import "./CreateRoomForm.scss";
 import OptionGroup from "@/shared/ui/OptionGroup";
 import {
-  accessRoomLabels,
   answerTimeSecOptions,
-  difficultyOptionsLabels,
   gameDifficultyOptions,
-  maxPlayersOptions,
-  accessRoomOptions,
+  roomAccessOptions,
   roundsCountOptions,
   topicOptions,
+  maxPlayersOptions,
+  
+  roomAccessLabels,
+  difficultyOptionsLabels,
   topicOptionsLabels,
-} from "@/shared/config/quizOptions/quizOptions";
+} from "@/shared/config/quizOptions";
 import Button from "@/shared/ui/Button";
 import { useCreateRoomMutation } from "@/entities/room/api/roomMutations";
 import {
@@ -161,8 +162,8 @@ const CreateRoomForm = () => {
             <OptionGroup
               name={field.name}
               title="Доступ"
-              options={accessRoomOptions}
-              getLabel={(access) => accessRoomLabels[access]}
+              options={roomAccessOptions}
+              getLabel={(access) => roomAccessLabels[access]}
               value={field.value}
               onChange={field.onChange}
             />

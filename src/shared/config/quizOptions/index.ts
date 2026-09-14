@@ -1,9 +1,16 @@
 export {
-  answerTimeSecOptions,
-  gameDifficultyOptions,
+  roomAccessLabels,
+  roomAccessOptions,
+
+  difficultyOptionsLabels,
   questionDifficultyOptions,
-  accessRoomOptions,
-  roundsCountOptions,
+  gameDifficultyOptions,
+
+  topicOptionsLabels,
   topicOptions,
+
+  maxPlayersOptions,
+  answerTimeSecOptions,
+  roundsCountOptions,
   roomStatusOptions,
 } from "./quizOptions";

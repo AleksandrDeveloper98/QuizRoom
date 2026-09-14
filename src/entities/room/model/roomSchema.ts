@@ -4,7 +4,7 @@ import { maxPlayersSchema } from "./roomValueSchemas";
 
 import {
   gameDifficultyOptions,
-  accessRoomOptions,
+  roomAccessOptions,
   roomStatusOptions,
   topicOptions,
 } from "@/shared/config/quizOptions";
@@ -32,7 +32,7 @@ export const roomSettingsSchema = z.object({
 
   difficulty: z.enum(gameDifficultyOptions),
 
-  access: z.enum(accessRoomOptions),
+  access: z.enum(roomAccessOptions),
 });
 
 export const createRoomSchema = roomSettingsSchema
