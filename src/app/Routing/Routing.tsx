@@ -1,8 +1,7 @@
 import { routes } from "@/shared/constants/routes";
-import { lazy, Suspense } from "react";
+import { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
-import PageLoader from "@/shared/ui/PageLoader";
 import ProtectedLayout from "../layouts/ProtectedLayout";
 import PageSuspense from "./PageSuspense";
 
