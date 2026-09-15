@@ -1,7 +1,6 @@
 .field {
   display: flex;
   flex-direction: column;
-  
 
   &__label {
     width: fit-content;
@@ -38,7 +37,6 @@
 
   &__error {
     min-height: 18px;
-
-    font-size: 12px;    
+    font-size: 12px;
   }
 }

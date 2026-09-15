@@ -8,3 +8,7 @@
 .visually-hidden {
   @include visually-hidden;
 }
+
+.hide {
+  @include hide;
+}

@@ -6,8 +6,9 @@
   border-radius: var(--border-radius-l);
   padding: 15px;
 
-  @include hover{
+  @include hover{    
     border-color: var(--color-lavender-violet);
+    scale: 1.03;
   }
 
   &__header {

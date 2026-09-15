@@ -1,5 +1,6 @@
 import type { TOptionGroupProps } from "./types";
 import "./OptionGroup.scss";
+import clsx from "clsx";
 
 const OptionGroup = <T extends string | number>(
   props: TOptionGroupProps<T>,
@@ -10,13 +11,21 @@ const OptionGroup = <T extends string | number>(
     value,
     options,
     title,
+    hiddenTitle,
     getLabel = (option) => String(option),
     unit,
   } = props;
 
   return (
     <fieldset className="option-group">
-      <legend className="option-group__title h5">{title}</legend>
+      <legend
+        className={clsx(
+          "option-group__title h5",
+          hiddenTitle && "visually-hidden",
+        )}
+      >
+        {title}
+      </legend>
       <ul className="option-group__list">
         {options.map((option) => {
           const id = `${title}-${option}`;

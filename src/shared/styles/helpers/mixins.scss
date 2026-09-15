@@ -13,6 +13,11 @@
   overflow: hidden !important;
 }
 
+@mixin hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
 @mixin flex-center($isInline: false) {
   @if ($isInline) {
     display: inline-flex;

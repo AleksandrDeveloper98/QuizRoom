@@ -15,11 +15,36 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-bottom: fluid(30, 20);
   }
 
   &__body {
     @include flex-center();
+    padding-block: 30px;
     flex-direction: column;
+    position: relative;
+    row-gap: 30px;
     flex: 1;
+
+    &--updating {
+      opacity: 0.7;
+      pointer-events: none;
+    }
+  }
+
+  &__updating {
+    position: absolute;
+    z-index: 1;
+  }
+
+  &__actions {
+    display: grid;
+    grid-template-columns: 60% 1fr;
+    align-items: center;
+    gap: 20px;
+
+    @include tablet {
+      grid-template-columns: 1fr;
+    }
   }
 }
