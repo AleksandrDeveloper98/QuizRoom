@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import PageLoader from "@/shared/ui/PageLoader";
 import ProtectedLayout from "../layouts/ProtectedLayout";
+import PageSuspense from "./PageSuspense";
 
 const WelcomePage = lazy(() => import("@/pages/WelcomePage"));
 const RoomPage = lazy(() => import("@/pages/RoomPage"));
@@ -12,19 +13,45 @@ const CreateRoomPage = lazy(() => import("@/pages/CreateRoomPage"));
 
 const Routing = () => {
   return (
-    <Suspense fallback={<PageLoader fullscreen />}>
-      <Routes>
-        <Route path={routes.welcome} element={<WelcomePage />} />
+    <Routes>
+      <Route
+        path={routes.welcome}
+        element={
+          <PageSuspense>
+            <WelcomePage />
+          </PageSuspense>
+        }
+      />
 
-        <Route element={<ProtectedLayout />}>
-          <Route element={<MainLayout />}>
-            <Route path={routes.room} element={<RoomPage />} /> 
-            <Route path={routes.rooms} element={<RoomsPage />} />
-            <Route path={routes.createRoom} element={<CreateRoomPage />} />
-          </Route>
+      <Route element={<ProtectedLayout />}>
+        <Route element={<MainLayout />}>
+          <Route
+            path={routes.room}
+            element={
+              <PageSuspense>
+                <RoomPage />
+              </PageSuspense>
+            }
+          />
+          <Route
+            path={routes.rooms}
+            element={
+              <PageSuspense>
+                <RoomsPage />
+              </PageSuspense>
+            }
+          />
+          <Route
+            path={routes.createRoom}
+            element={
+              <PageSuspense>
+                <CreateRoomPage />
+              </PageSuspense>
+            }
+          />
         </Route>
-      </Routes>
-    </Suspense>
+      </Route>
+    </Routes>
   );
 };
 

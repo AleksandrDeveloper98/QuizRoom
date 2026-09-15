@@ -5,7 +5,8 @@ import Routing from "./Routing";
 
 const App = () => {
   return (
-    <BrowserRouter>
+    // осознанное отключение для собственного PageSuspense
+    <BrowserRouter useTransitions={false}>
       <QueryProvider>
         <Routing />
       </QueryProvider>
