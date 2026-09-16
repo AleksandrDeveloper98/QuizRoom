@@ -1,4 +1,4 @@
-import CreateRoomForm from "@/features/CreateRoomForm";
+import CreateRoomForm from "@/features/create-room-form/ui/CreateRoomForm";
 
 const CreateRoomPage = () => {
   return (

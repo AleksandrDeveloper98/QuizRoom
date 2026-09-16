@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 
 import { routes } from "@/shared/constants/routes";
 import Button from "@/shared/ui/Button";
-import { useLogoutGuestSessionMutation } from "@/features/guestSession/api/guestSessionMutation";
+import { useLogoutGuestSessionMutation } from "@/features/guest-session/api/guestSessionMutation";
 
 const ButtonLogout = () => {
   const logoutMutation = useLogoutGuestSessionMutation();

@@ -1,4 +1,4 @@
-import GuestPlayerForm from "@/features/guestSession/ui/GuestPlayerForm";
+import GuestPlayerForm from "@/features/guest-session/ui/GuestPlayerForm";
 import "./WelcomePage.scss";
 import Logo from "@/shared/ui/Logo";
 

@@ -10,7 +10,7 @@ import {
 
 import { useNavigate } from "react-router-dom";
 import { routes } from "@/shared/constants/routes";
-import { useCreateGuestSessionMutation } from "@/features/guestSession/api/guestSessionMutation";
+import { useCreateGuestSessionMutation } from "@/features/guest-session/api/guestSessionMutation";
 
 const GuestPlayerForm = () => {
   const createGuestSessionMutation = useCreateGuestSessionMutation();

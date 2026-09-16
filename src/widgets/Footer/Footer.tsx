@@ -1,4 +1,4 @@
-import ButtonLogout from "@/features/guestSession/ui/ButtonLogout";
+import ButtonLogout from "@/features/guest-session/ui/ButtonLogout";
 import "./Footer.scss";
 
 const Footer = () => {
