@@ -1,0 +1,29 @@
+.modal {
+  @include flex-center();
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.6);
+
+  &__dialog {
+    display: flex;
+    flex-direction: column;
+    row-gap: 25px;
+    max-width: 400px;
+    width: 100%;
+    border: var(--border);
+    border-radius: var(--border-radius-l);
+    padding: 35px 20px;
+    background-color: var(--color-graphite-black);
+  }
+
+  &__title {
+    text-align: center;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+  }
+}
