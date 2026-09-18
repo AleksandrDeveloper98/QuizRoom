@@ -4,12 +4,14 @@ import type { TModalProps } from "./types";
 import { useEffect, useId, type MouseEvent } from "react";
 
 const Modal = (props: TModalProps) => {
-  const { title, children, actions, onClose } = props;
+  const { title, children, actions, onClose, closeDisabled = false } = props;
 
   const id = useId();
-  const titleId = `${title}${id}`;
+  const titleId = `modal-title-${id}`;
 
   useEffect(() => {
+    if (closeDisabled) return;
+
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         onClose();
@@ -21,9 +23,10 @@ const Modal = (props: TModalProps) => {
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [onClose]);
+  }, [onClose, closeDisabled]);
 
   const handleBackdropClick = (event: MouseEvent<HTMLDivElement>) => {
+    if (closeDisabled) return;
     if (event.target === event.currentTarget) {
       onClose();
     }

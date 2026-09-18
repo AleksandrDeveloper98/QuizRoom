@@ -1,18 +1,20 @@
-import { Link } from "react-router-dom";
-import { routes } from "@/shared/constants/routes";
+import clsx from "clsx";
+import { roomDisplayStatusLabels } from "@/entities/room/model/constants";
 import Icon from "@/shared/ui/Icon";
 import LockIcon from "@/shared/assets/icons/lock.svg?react";
 import Badge from "@/shared/ui/Badge";
-import { roomDisplayStatusLabels } from "@/entities/room/model/constants";
+import {
+  difficultyOptionsLabels,
+  topicOptionsLabels,
+} from "@/shared/config/quizOptions/quizOptions";
 import { roomCardStatus } from "./constants";
 import type { TRoomCardProps } from "./types";
-import "./RoomCard.scss";
 import type { TRoomDisplayStatus } from "../../model/types";
-import { difficultyOptionsLabels, topicOptionsLabels } from "@/shared/config/quizOptions/quizOptions";
 
-const RoomCard = ({ room }: TRoomCardProps) => {
+import "./RoomCard.scss";
+
+const RoomCard = ({ room, className }: TRoomCardProps) => {
   const {
-    id,
     name,
     topic,
     status,
@@ -29,11 +31,11 @@ const RoomCard = ({ room }: TRoomCardProps) => {
     status === "waiting" && playersCount >= maxPlayers ? "filled" : status;
 
   return (
-    <Link to={routes.roomById(id)} className="room-card">
+    <article className={clsx("room-card", className)}>
       <header className="room-card__header">
         <div className="room-card__info">
           <p className="room-card__title">
-            {name}
+            <span className="room-card__title">{name}</span>
             {isAccessPrivate && (
               <>
                 <Icon icon={LockIcon} />
@@ -62,7 +64,7 @@ const RoomCard = ({ room }: TRoomCardProps) => {
           </span>
         </div>
       </div>
-    </Link>
+    </article>
   );
 };
 

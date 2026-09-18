@@ -1,34 +1,63 @@
 .room-card {
   display: flex;
   flex-direction: column;
-  background-color: var(--color-graphite-black);
+
+  min-width: 0;
+
+  padding: 15px;
   border: var(--border);
   border-radius: var(--border-radius-l);
-  padding: 15px;
 
-  @include hover{    
-    border-color: var(--color-lavender-violet);
-    scale: 1.03;
-  }
+  background-color: var(--color-graphite-black);
 
   &__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     column-gap: 10px;
     padding-bottom: 10px;
   }
 
+  &__info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__status {
+    flex-shrink: 0;
+  }
+
   &__title {
     display: flex;
+    align-items: center;
+
+    min-width: 0;
     column-gap: 5px;
+    overflow: hidden;
+
     color: var(--color-white);
     font-weight: 600;
+  }
+
+  &__name {
+    min-width: 0;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
   }
 
   &__description {
     display: flex;
     column-gap: 20px;
+
     padding-bottom: 10px;
   }
 
@@ -36,6 +65,8 @@
     display: flex;
     justify-content: end;
     align-items: center;
+
+    margin-top: auto;
     column-gap: 10px;
   }
 }

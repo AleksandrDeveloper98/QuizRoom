@@ -1,0 +1,35 @@
+.join-room-card {
+  position: relative;
+
+  display: flex;
+  flex: 1;
+  min-width: 0;
+
+  &__card {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__trigger {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+    border-radius: var(--border-radius-l);
+
+    &:disabled {
+      cursor: default;
+    }
+  }
+
+  &:has(&__trigger:disabled) &__card {
+    opacity: 0.5;
+  }
+
+  &:has(&__trigger:not(:disabled):hover) &__card {
+    border-color: var(--color-lavender-violet);
+    transform: scale(1.03);
+  }
+}

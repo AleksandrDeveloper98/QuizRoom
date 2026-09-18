@@ -16,13 +16,13 @@
     justify-content: space-between;
     align-items: center;
     padding-bottom: fluid(30, 20);
-   column-gap: 10px
+    column-gap: 10px;
   }
 
   &__body {
     @include flex-center();
-    padding-block: 30px;
     flex-direction: column;
+    padding-block: 30px;
     position: relative;
     row-gap: 30px;
     flex: 1;

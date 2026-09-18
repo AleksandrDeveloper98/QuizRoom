@@ -1,29 +1,42 @@
-import Button from "@/shared/ui/Button";
-import "./Rooms.scss";
-import { routes } from "@/shared/constants/routes";
-import RoomsList from "@/entities/room/ui/RoomsList";
-import { useRoomsQuery } from "@/entities/room/api/roomQueries";
 import { type ReactNode } from "react";
+import clsx from "clsx";
+import RoomsList from "@/widgets/Rooms/ui/RoomsList";
+import { useJoinRoom } from "@/features/join-room/model/useJoinRoom";
+import JoinPrivateRoomModal from "@/features/join-room/ui/JoinPrivateRoomModal";
+import { useRoomsQuery } from "@/entities/room/api/roomQueries";
+import Pagination from "@/shared/ui/Pagination";
+import Field from "@/shared/ui/Field";
+import Button from "@/shared/ui/Button";
 import Spinner from "@/shared/ui/Spinner";
 import OptionGroup from "@/shared/ui/OptionGroup";
+import { routes } from "@/shared/constants/routes";
 
 import {
   roomAccessFilterLabels,
   roomAccessFilterOptions,
 } from "./model/constants";
-import Pagination from "@/shared/ui/Pagination";
-import Field from "@/shared/ui/Field";
+
 import {
   useRoomsAccessFilter,
   useRoomsPagination,
   useRoomsSearch,
 } from "./model/hooks";
-import clsx from "clsx";
+
+import "./Rooms.scss";
 
 const Rooms = () => {
   const { access, accessFilter, handleAccessChange } = useRoomsAccessFilter();
   const { search, debouncedSearch, handleSearchChange } = useRoomsSearch();
   const { page, handlePageChange } = useRoomsPagination();
+  const {
+    join,
+    privateRoom,
+    passwordError,
+    submitPassword,
+    closePrivateRoomModal,
+    pendingRoomId,
+    isPendingJoinRoom,
+  } = useJoinRoom();
 
   const titleId = "rooms-page-title";
 
@@ -56,7 +69,12 @@ const Rooms = () => {
   } else {
     roomsListContent = (
       <>
-        <RoomsList rooms={roomsList.items} />
+        <RoomsList
+          rooms={roomsList.items}
+          onJoin={join}
+          pendingRoomId={pendingRoomId}
+          isJoinPending={isPendingJoinRoom}
+        />
         <Pagination
           page={roomsList.page}
           pageSize={roomsList.pageSize}
@@ -113,6 +131,15 @@ const Rooms = () => {
             </div>
           )}
           {roomsListContent}
+          {privateRoom && (
+            <JoinPrivateRoomModal
+              roomName={privateRoom.name}
+              error={passwordError}
+              isPending={isPendingJoinRoom}
+              onSubmit={submitPassword}
+              onClose={closePrivateRoomModal}
+            />
+          )}
         </div>
       </div>
     </section>

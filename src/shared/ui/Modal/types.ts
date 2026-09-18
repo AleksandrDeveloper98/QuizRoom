@@ -5,4 +5,5 @@ export type TModalProps = {
   actions?: ReactNode;
   children?: ReactNode;
   onClose: () => void;
+  closeDisabled?: boolean;
 };
