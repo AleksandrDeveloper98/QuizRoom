@@ -2,8 +2,8 @@ import { routes } from "@/shared/constants/routes";
 import { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
-import ProtectedLayout from "../layouts/ProtectedLayout";
 import PageSuspense from "./PageSuspense";
+import SessionGuard from "../layouts/SessionGuard";
 
 const WelcomePage = lazy(() => import("@/pages/WelcomePage"));
 const RoomPage = lazy(() => import("@/pages/RoomPage"));
@@ -15,16 +15,18 @@ const NotFoundPage = lazy(() => import("@/pages/NotFoundPage"));
 const Routing = () => {
   return (
     <Routes>
-      <Route
-        path={routes.welcome}
-        element={
-          <PageSuspense>
-            <WelcomePage />
-          </PageSuspense>
-        }
-      />
+      <Route element={<SessionGuard access="anonymous" />}>
+        <Route
+          path={routes.welcome}
+          element={
+            <PageSuspense>
+              <WelcomePage />
+            </PageSuspense>
+          }
+        />
+      </Route>
 
-      <Route element={<ProtectedLayout />}>
+      <Route element={<SessionGuard access="authenticated" />}>
         <Route element={<MainLayout />}>
           <Route
             path={routes.room}
@@ -52,6 +54,7 @@ const Routing = () => {
           />
         </Route>
       </Route>
+
       <Route
         path={routes.notFound}
         element={

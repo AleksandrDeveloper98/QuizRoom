@@ -3,10 +3,12 @@ import { useCurrentGuestPlayer } from "@/entities/guestPlayer/api/guestPlayerQue
 import PageLoader from "@/shared/ui/PageLoader";
 import { routes } from "@/shared/constants/routes";
 import Button from "@/shared/ui/Button";
+import type { TSessionGuardProps } from "./types";
 
-import "./ProtectedLayout.scss";
+import "./SessionGuard.scss";
 
-const ProtectedLayout = () => {
+const SessionGuard = (props: TSessionGuardProps) => {
+  const { access } = props;
   const {
     data: currentGuestPlayer,
     isPending,
@@ -19,20 +21,26 @@ const ProtectedLayout = () => {
 
   if (isError) {
     return (
-      <div className="protected-layout">
-        <p className="protected-layout__info">Не удалось проверить сессию</p>
-        <Button className="protected-layout__action" to={routes.welcome}>
+      <div className="session-guard">
+        <p className="session-guard__info">Не удалось проверить сессию</p>
+        <Button className="session-guard__action" to={routes.welcome}>
           Вернуться назад
         </Button>
       </div>
     );
   }
 
-  if (!currentGuestPlayer) {
+  const hasSession = Boolean(currentGuestPlayer);
+
+  if (access === "authenticated" && !hasSession) {
     return <Navigate to={routes.welcome} replace />;
+  }
+
+  if (access === "anonymous" && hasSession) {
+    return <Navigate to={routes.rooms} replace />;
   }
 
   return <Outlet />;
 };
 
-export default ProtectedLayout;
+export default SessionGuard;
