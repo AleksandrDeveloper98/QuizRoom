@@ -1,20 +1,18 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import Field from "@/shared/ui/Field";
-import "./GuestPlayerForm.scss";
-import Button from "@/shared/ui/Button";
 import { useForm, type SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useCreateGuestSessionMutation } from "@/features/guest-session/api/guestSessionMutation";
+import Field from "@/shared/ui/Field";
+import Button from "@/shared/ui/Button";
 import {
   type TCreateGuestPlayer,
   createGuestPlayerSchema,
 } from "@/entities/guestPlayer/model/guestPlayerSchema";
 
-import { useNavigate } from "react-router-dom";
-import { routes } from "@/shared/constants/routes";
-import { useCreateGuestSessionMutation } from "@/features/guest-session/api/guestSessionMutation";
+import "./GuestPlayerForm.scss";
 
 const GuestPlayerForm = () => {
   const createGuestSessionMutation = useCreateGuestSessionMutation();
-  const navigate = useNavigate();
+  
 
   const {
     register,
@@ -26,11 +24,7 @@ const GuestPlayerForm = () => {
   });
 
   const onSubmit: SubmitHandler<TCreateGuestPlayer> = (data) => {
-    createGuestSessionMutation.mutate(data, {
-      onSuccess: () => {
-        navigate(routes.rooms);
-      },
-    });
+    createGuestSessionMutation.mutate(data);
   };
 
   return (

@@ -1,4 +1,4 @@
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { useCurrentGuestPlayer } from "@/entities/guestPlayer/api/guestPlayerQueries";
 import PageLoader from "@/shared/ui/PageLoader";
 import { routes } from "@/shared/constants/routes";
@@ -14,6 +14,8 @@ const SessionGuard = (props: TSessionGuardProps) => {
     isPending,
     isError,
   } = useCurrentGuestPlayer();
+
+  const location = useLocation();
 
   if (isPending) {
     return <PageLoader fullscreen />;
@@ -33,11 +35,17 @@ const SessionGuard = (props: TSessionGuardProps) => {
   const hasSession = Boolean(currentGuestPlayer);
 
   if (access === "authenticated" && !hasSession) {
-    return <Navigate to={routes.welcome} replace />;
+    const currentPath = `${location.pathname}${location.search}${location.hash}`;
+
+    return (
+      <Navigate to={routes.welcome} state={{ returnTo: currentPath }} replace />
+    );
   }
 
   if (access === "anonymous" && hasSession) {
-    return <Navigate to={routes.rooms} replace />;
+    const savedPath = location.state?.returnTo;
+
+    return <Navigate to={savedPath ?? routes.rooms} replace />;
   }
 
   return <Outlet />;

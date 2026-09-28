@@ -1,5 +1,5 @@
 export type TJoinPrivateRoomModalProps = {
-  roomName: string;
+  roomName?: string;
   onClose: () => void;
   onSubmit: (password: string) => void;
   onPasswordChange: () => void;

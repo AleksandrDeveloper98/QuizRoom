@@ -13,7 +13,7 @@ const Lobby = (props: TLobbyProps) => {
   const handleCopyRoomLink = async () => {
     try {
       const roomLink = new URL(
-        routes.roomById(roomId),
+        routes.inviteById(roomId),
         window.location.origin,
       ).toString();
 

@@ -9,6 +9,7 @@ const WelcomePage = lazy(() => import("@/pages/WelcomePage"));
 const RoomPage = lazy(() => import("@/pages/RoomPage"));
 const RoomsPage = lazy(() => import("@/pages/RoomsPage"));
 const CreateRoomPage = lazy(() => import("@/pages/CreateRoomPage"));
+const InviteRoomPage = lazy(() => import("@/pages/InviteRoomPage"));
 
 const NotFoundPage = lazy(() => import("@/pages/NotFoundPage"));
 
@@ -27,6 +28,15 @@ const Routing = () => {
       </Route>
 
       <Route element={<SessionGuard access="authenticated" />}>
+        <Route
+          path={routes.invite}
+          element={
+            <PageSuspense>
+              <InviteRoomPage />
+            </PageSuspense>
+          }
+        />
+
         <Route element={<MainLayout />}>
           <Route
             path={routes.room}

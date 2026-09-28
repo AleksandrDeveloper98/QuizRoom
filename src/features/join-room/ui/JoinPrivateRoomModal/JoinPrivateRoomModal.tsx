@@ -30,7 +30,11 @@ const JoinPrivateRoomModal = (props: TJoinPrivateRoomModalProps) => {
 
   return (
     <Modal
-      title={`Введите пароль от комнаты ${roomName}`}
+      title={
+        roomName
+          ? `Введите пароль от комнаты ${roomName}`
+          : "Введите пароль от комнаты"
+      }
       open
       onClose={onClose}
     >
