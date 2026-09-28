@@ -1,0 +1,14 @@
+.player-identity {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  color: var(--color-white);
+
+  &__circle {
+    @include flex-center(true);
+    @include square(40px);
+    border-radius: 50%;
+    background-color: var(--color-green-alt);
+    font-weight: 600;
+  }
+}
