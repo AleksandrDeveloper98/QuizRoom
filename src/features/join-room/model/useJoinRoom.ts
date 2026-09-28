@@ -81,7 +81,6 @@ export const useJoinRoom = () => {
     if (room.access === "private") {
       setPasswordError(undefined);
       setPrivateRoom(room);
-
       return;
     }
 
@@ -100,8 +99,11 @@ export const useJoinRoom = () => {
     if (joinRoomMutation.isPending) {
       return;
     }
-
     setPrivateRoom(null);
+    setPasswordError(undefined);
+  };
+
+  const clearPasswordError = () => {
     setPasswordError(undefined);
   };
 
@@ -113,7 +115,7 @@ export const useJoinRoom = () => {
 
     submitPassword,
     closePrivateRoomModal,
-
+    clearPasswordError,
     pendingRoomId,
 
     isPendingJoinRoom: joinRoomMutation.isPending,

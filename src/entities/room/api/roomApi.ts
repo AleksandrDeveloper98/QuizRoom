@@ -4,10 +4,24 @@ import { API_ENDPOINTS } from "@/shared/api/endpoints";
 import { roomsListSchema, type TRoomsList } from "../model/roomsListSchema";
 import { roomSchema, type TCreateRoom, type TRoom } from "../model/roomSchema";
 import type { TRoomsListParams } from "../model/types";
+import {
+  roomDetailsSchema,
+  type TRoomDetails,
+} from "../model/roomDetailsSchema";
 
 export const roomApi = {
-  getList: async (params: TRoomsListParams): Promise<TRoomsList> => {
+  getById: async (roomId: string): Promise<TRoomDetails> => {
+    const data = await httpClient(
+      `${API_BASE_URL}${API_ENDPOINTS.rooms.byId(roomId)}`,
+      {
+        method: "GET",
+      },
+    );
 
+    return roomDetailsSchema.parse(data);
+  },
+
+  getList: async (params: TRoomsListParams): Promise<TRoomsList> => {
     const queryParams = new URLSearchParams({
       page: String(params.page),
       pageSize: String(params.pageSize),

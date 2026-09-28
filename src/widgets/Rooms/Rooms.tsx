@@ -31,11 +31,12 @@ const Rooms = () => {
   const {
     join,
     privateRoom,
-    passwordError,
     submitPassword,
     closePrivateRoomModal,
     pendingRoomId,
     isPendingJoinRoom,
+    passwordError,
+    clearPasswordError,
   } = useJoinRoom();
 
   const titleId = "rooms-page-title";
@@ -134,10 +135,11 @@ const Rooms = () => {
           {privateRoom && (
             <JoinPrivateRoomModal
               roomName={privateRoom.name}
-              error={passwordError}
               isPending={isPendingJoinRoom}
               onSubmit={submitPassword}
               onClose={closePrivateRoomModal}
+              error={passwordError}
+              onPasswordChange={clearPasswordError}
             />
           )}
         </div>

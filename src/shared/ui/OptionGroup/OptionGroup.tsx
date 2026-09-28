@@ -28,7 +28,8 @@ const OptionGroup = <T extends string | number>(
       </legend>
       <ul className="option-group__list">
         {options.map((option) => {
-          const id = `${title}-${option}`;
+          const formattedTitle = title.split(" ").join("-");
+          const id = `${formattedTitle}-${option}`;
           return (
             <li className="option-group__item" key={option}>
               <input

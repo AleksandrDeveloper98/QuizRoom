@@ -1,0 +1,15 @@
+.lobby {
+  &__body {
+    display: grid;
+    gap: 20px;
+
+    @include mobile-above {
+      grid-template-columns: 60% 1fr;
+    }
+  }
+
+  &__sidebar {
+    display: grid;
+    row-gap: 20px;
+  }
+}

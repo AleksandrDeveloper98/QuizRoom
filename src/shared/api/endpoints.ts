@@ -11,5 +11,6 @@ export const API_ENDPOINTS = {
   rooms: {
     root: "/rooms",
     join: (roomId: string) => `/rooms/${roomId}/join`,
+    byId: (roomId: string) => `/rooms/${roomId}`,
   },
 } as const;

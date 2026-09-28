@@ -11,3 +11,12 @@ export const useRoomsQuery = (params: TRoomsListParams) => {
     placeholderData: keepPreviousData,
   });
 };
+
+export const useRoomQuery = (roomId: string) => {
+  return useQuery({
+    queryKey: roomQueryKeys.detail(roomId),
+    queryFn: () => roomApi.getById(roomId), 
+    
+    staleTime: 0,
+  });
+};
