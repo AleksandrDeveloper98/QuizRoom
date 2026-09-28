@@ -1,11 +1,14 @@
 .modal {
-  @include flex-center();
   position: fixed;
   inset: 0;
   z-index: 1000;
   background: rgba(0, 0, 0, 0.6);
 
   &__dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
     row-gap: 25px;
@@ -15,10 +18,12 @@
     border-radius: var(--border-radius-l);
     padding: 35px 20px;
     background-color: var(--color-graphite-black);
+    z-index: 1001;
   }
 
   &__title {
     text-align: center;
+    @include fluid-text(24px, 20px);
   }
 
   &__actions {

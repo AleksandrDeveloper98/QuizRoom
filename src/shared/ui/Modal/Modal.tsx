@@ -1,53 +1,28 @@
-import { createPortal } from "react-dom";
-import "./Modal.scss";
 import type { TModalProps } from "./types";
-import { useEffect, useId, type MouseEvent } from "react";
+import { Dialog } from "radix-ui";
+
+import "./Modal.scss";
 
 const Modal = (props: TModalProps) => {
-  const { title, children, actions, onClose, closeDisabled = false } = props;
+  const { open, title, children, actions, onClose } = props;
 
-  const id = useId();
-  const titleId = `modal-title-${id}`;
-
-  useEffect(() => {
-    if (closeDisabled) return;
-
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        onClose();
-      }
-    };
-
-    document.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [onClose, closeDisabled]);
-
-  const handleBackdropClick = (event: MouseEvent<HTMLDivElement>) => {
-    if (closeDisabled) return;
-    if (event.target === event.currentTarget) {
+  const handleOpenChange = (nextOpen: boolean) => {
+    if (!nextOpen) {
       onClose();
     }
   };
 
-  return createPortal(
-    <div className="modal" onMouseDown={handleBackdropClick}>
-      <div
-        className="modal__dialog"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby={titleId}
-      >
-        <h2 className="modal__title h4" id={titleId}>
-          {title}
-        </h2>
-        {children && <div className="modal__main">{children}</div>}
-        {actions && <div className="modal__actions">{actions}</div>}
-      </div>
-    </div>,
-    document.body,
+  return (
+    <Dialog.Root open={open} onOpenChange={handleOpenChange}>
+      <Dialog.Portal>
+        <Dialog.Overlay className="modal" />
+        <Dialog.Content className="modal__dialog" aria-describedby={undefined}>
+          <Dialog.Title className="modal__title h4">{title}</Dialog.Title>
+          {children && <div className="modal__main">{children}</div>}
+          {actions && <div className="modal__actions">{actions}</div>}
+        </Dialog.Content>
+      </Dialog.Portal>
+    </Dialog.Root>
   );
 };
 
