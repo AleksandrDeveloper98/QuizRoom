@@ -1,6 +1,8 @@
 .badge {
+  @include flex-center(true);
   padding: 7px;
   border-radius: var(--border-radius-m);
+  
   &--green {
     background-color: var(--color-dark-green);
     color: var(--color-green);
@@ -14,5 +16,10 @@
   &--red {
     background-color: var(--color-dark-red);
     color: var(--color-red);
+  }
+
+  &--violet {
+    background-color: var(--color-violet-dark);
+    color: var(--color-lavender-violet);
   }
 }

@@ -1,0 +1,20 @@
+.lobby-players-panel {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  padding: 20px;
+  border: var(--border);
+  border-radius: var(--border-radius-l);
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 10px;
+  }
+
+  &__list {
+    display: grid;
+    row-gap: 10px;
+  }
+}
