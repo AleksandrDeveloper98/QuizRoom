@@ -4,6 +4,5 @@ export type TPaginationProps = {
   total: number;
   totalPages: number;
   onPageChange: (page: number) => void;
-
   className?: string;
 };

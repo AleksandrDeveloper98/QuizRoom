@@ -46,7 +46,7 @@ const Field = forwardRef<HTMLInputElement, TFieldProps>((props, ref) => {
       />
 
       {error && (
-        <span className="field__error" id={errorId}>
+        <span className="field__error" id={errorId} role="alert">
           {error ?? ""}
         </span>
       )}

@@ -35,7 +35,7 @@ const RoomCard = ({ room, className }: TRoomCardProps) => {
       <header className="room-card__header">
         <div className="room-card__info">
           <p className="room-card__title">
-            <span className="room-card__title">{name}</span>
+            <span className="room-card__name">{name}</span>
             {isAccessPrivate && (
               <>
                 <Icon icon={LockIcon} />

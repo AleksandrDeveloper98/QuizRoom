@@ -37,7 +37,12 @@ export const roomSettingsSchema = z.object({
 
 export const createRoomSchema = roomSettingsSchema
   .extend({
-    password: z.string().trim().max(10, "Максимум 10 символов").optional(),
+    password: z
+      .string()
+      .trim()
+      .min(1, "Поле не может быть пустым")
+      .max(10, "Максимум 10 символов")
+      .optional(),
   })
   .superRefine((data, ctx) => {
     if (data.access === "private" && !data.password) {

@@ -9,7 +9,7 @@ const WelcomePage = () => {
     <main className="welcome-page" aria-labelledby={titleId}>
       <div className="welcome-page__inner">
         <header className="welcome-page__header">
-          <h1 className="welcome-page__title">
+          <h1 className="welcome-page__title" id={titleId}>
             <Logo />
           </h1>
           <p className="welcome-page__subtitle">
