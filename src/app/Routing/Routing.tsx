@@ -10,6 +10,8 @@ const RoomPage = lazy(() => import("@/pages/RoomPage"));
 const RoomsPage = lazy(() => import("@/pages/RoomsPage"));
 const CreateRoomPage = lazy(() => import("@/pages/CreateRoomPage"));
 
+const NotFoundPage = lazy(() => import("@/pages/NotFoundPage"));
+
 const Routing = () => {
   return (
     <Routes>
@@ -50,6 +52,14 @@ const Routing = () => {
           />
         </Route>
       </Route>
+      <Route
+        path={routes.notFound}
+        element={
+          <PageSuspense>
+            <NotFoundPage />
+          </PageSuspense>
+        }
+      />
     </Routes>
   );
 };
