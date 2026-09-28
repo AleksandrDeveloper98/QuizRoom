@@ -1,0 +1,11 @@
+.join-private-room-modal {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+
+  &__actions {
+    display: flex;
+    justify-content: center;
+    column-gap: 20px;
+  }
+}

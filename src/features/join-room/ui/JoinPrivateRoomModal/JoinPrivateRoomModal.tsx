@@ -1,51 +1,59 @@
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 import Modal from "@/shared/ui/Modal";
 import Field from "@/shared/ui/Field";
 import Button from "@/shared/ui/Button";
 import type { TJoinPrivateRoomModalProps } from "./types";
+import {
+  roomPasswordSchema,
+  type TRoomPassword,
+} from "@/entities/room/model/roomPasswordSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+import "./JoinPrivateRoomModal.scss";
 
 const JoinPrivateRoomModal = (props: TJoinPrivateRoomModalProps) => {
-  const { roomName, onClose, onSubmit, isPending, error } = props;
-  const [password, setPassword] = useState("");
+  const { roomName, onClose, onSubmit, isPending, error, onPasswordChange } =
+    props;
 
-  const handleSubmit = () => {
-    const normalizedPassword = password.trim();
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm<TRoomPassword>({
+    resolver: zodResolver(roomPasswordSchema),
+    defaultValues: { password: "" },
+  });
 
-    if (!normalizedPassword) {
-      return;
-    }
-
-    onSubmit(normalizedPassword);
+  const submit = (data: TRoomPassword) => {
+    onSubmit(data.password);
   };
 
   return (
     <Modal
       title={`Введите пароль от комнаты ${roomName}`}
+      open
       onClose={onClose}
-      closeDisabled={isPending}
-      children={
+    >
+      <form className="join-private-room-modal" onSubmit={handleSubmit(submit)}>
         <Field
+          {...register("password", { onChange: onPasswordChange })}
           id="password"
           label="Пароль"
           hiddenLabel
           type="password"
-          error={error}
+          error={errors.password?.message ?? error}
           disabled={isPending}
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
         />
-      }
-      actions={
-        <>
-          <Button disabled={isPending} onClick={handleSubmit}>
+        <div className="join-private-room-modal__actions">
+          <Button disabled={isPending} type="submit">
             {isPending ? "Подождите..." : "Войти"}
           </Button>
           <Button disabled={isPending} onClick={onClose}>
             Отмена
           </Button>
-        </>
-      }
-    />
+        </div>
+      </form>
+    </Modal>
   );
 };
 
