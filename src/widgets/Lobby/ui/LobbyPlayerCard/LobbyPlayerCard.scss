@@ -1,0 +1,13 @@
+.lobby-player-card {
+  display: flex;
+  justify-content: space-between;
+  border: var(--border);
+  border-radius: var(--border-radius-m);
+  padding: 10px;
+  column-gap: 10px;
+
+  &__info {
+    display: flex;
+    column-gap: 15px;
+  }
+}
