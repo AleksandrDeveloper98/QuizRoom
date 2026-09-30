@@ -1,6 +1,6 @@
 import { HttpError } from "@/shared/api/httpError";
 
-export const getJoinRoomErrorCode = (error: unknown): string | undefined => {
+export const getApiErrorCode  = (error: unknown): string | undefined => {
   if (!(error instanceof HttpError)) {
     return undefined;
   }

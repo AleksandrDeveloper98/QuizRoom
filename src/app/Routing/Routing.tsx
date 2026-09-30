@@ -6,6 +6,7 @@ import PageSuspense from "./PageSuspense";
 import SessionGuard from "../layouts/SessionGuard";
 import ButtonLogout from "@/features/guest-session/ui/ButtonLogout";
 import Button from "@/shared/ui/Button";
+import LeaveRoomButton from "@/features/leave-room/ui/LeaveRoomButton";
 
 const WelcomePage = lazy(() => import("@/pages/WelcomePage"));
 const RoomPage = lazy(() => import("@/pages/RoomPage"));
@@ -18,7 +19,7 @@ const NotFoundPage = lazy(() => import("@/pages/NotFoundPage"));
 const Routing = () => {
   return (
     <Routes>
-      // для неавторизованных гостей
+       {/* для неавторизованных гостей */}
       <Route element={<SessionGuard access="anonymous" />}>
         <Route
           path={routes.welcome}
@@ -29,7 +30,7 @@ const Routing = () => {
           }
         />
       </Route>
-      // для авторизованных гостей
+       {/* для авторизованных гостей */}
       <Route element={<SessionGuard access="authenticated" />}>
         <Route
           path={routes.invite}
@@ -39,7 +40,7 @@ const Routing = () => {
             </PageSuspense>
           }
         />
-        // логика такова, что для каждой страницы нужна своя кнопка в footer
+        {/* логика такова, что для каждой страницы нужна своя кнопка в footer */}
         <Route
           path={routes.rooms}
           element={<MainLayout footer={<ButtonLogout />} />}
@@ -53,7 +54,6 @@ const Routing = () => {
             }
           />
         </Route>
-
         <Route
           path={routes.createRoom}
           element={
@@ -71,14 +71,9 @@ const Routing = () => {
             }
           />
         </Route>
-
         <Route
           path={routes.room}
-          element={
-            <MainLayout
-              footer={<Button to={routes.rooms}>Назад к комнатам</Button>}
-            />
-          }
+          element={<MainLayout footer={<LeaveRoomButton />} />}
         >
           <Route
             index

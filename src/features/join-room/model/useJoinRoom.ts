@@ -4,8 +4,7 @@ import toast from "react-hot-toast";
 
 import type { TRoomListItem } from "@/entities/room/model/roomListItemSchema";
 import { routes } from "@/shared/constants/routes";
-
-import { getJoinRoomErrorCode } from "./getJoinRoomErrorCode";
+import { getApiErrorCode } from "@/shared/api/getApiErrorCode ";
 import { useJoinRoomMutation } from "../api/joinRoomMutation";
 
 export const useJoinRoom = () => {
@@ -43,7 +42,7 @@ export const useJoinRoom = () => {
         },
 
         onError: (error) => {
-          const code = getJoinRoomErrorCode(error);
+          const code = getApiErrorCode(error);
 
           switch (code) {
             case "INVALID_ROOM_PASSWORD":

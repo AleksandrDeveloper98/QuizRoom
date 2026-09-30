@@ -21,7 +21,7 @@ const Header = () => {
       <div className="header__inner container">
         <Logo className="header__logo" />
         <div className="header__info">
-          {playerContent && <p className="header__name">{playerContent} </p>}
+          {playerContent && <p className="header__name">{playerContent}</p>}
         </div>
       </div>
     </header>
