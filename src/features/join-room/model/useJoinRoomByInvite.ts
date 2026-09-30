@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import { routes } from "@/shared/constants/routes";
 
 import { useJoinRoomMutation } from "../api/joinRoomMutation";
-import { getApiErrorCode } from "@/shared/api/getApiErrorCode ";
+import { getApiErrorCode } from "@/shared/api/getApiErrorCode";
 
 export const useJoinRoomByInvite = (roomId: string) => {
   const navigate = useNavigate();

@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 
 import type { TRoomListItem } from "@/entities/room/model/roomListItemSchema";
 import { routes } from "@/shared/constants/routes";
-import { getApiErrorCode } from "@/shared/api/getApiErrorCode ";
+import { getApiErrorCode } from "@/shared/api/getApiErrorCode";
 import { useJoinRoomMutation } from "../api/joinRoomMutation";
 
 export const useJoinRoom = () => {

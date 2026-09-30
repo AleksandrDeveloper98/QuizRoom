@@ -1,7 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { joinRoomApi } from "./joinRoomApi";
 import { roomQueryKeys } from "@/entities/room/api/roomQueryKeys";
-import { getJoinRoomErrorCode } from "../model/getJoinRoomErrorCode";
+import { getApiErrorCode } from "@/shared/api/getApiErrorCode";
+
 
 export const useJoinRoomMutation = () => {
   const queryClient = useQueryClient();
@@ -20,7 +21,7 @@ export const useJoinRoomMutation = () => {
     },
 
     onError: (error) => {
-      const code = getJoinRoomErrorCode(error);
+      const code = getApiErrorCode(error);
 
       if (
         code === "ROOM_FULL" ||
