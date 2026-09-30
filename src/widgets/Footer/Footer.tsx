@@ -1,12 +1,13 @@
-import ButtonLogout from "@/features/guest-session/ui/ButtonLogout";
+import type { TFooterProps } from "./types";
+
 import "./Footer.scss";
 
-const Footer = () => {
+const Footer = (props: TFooterProps) => {
+  const { children } = props;
+
   return (
     <footer className="footer">
-      <div className="footer__inner container">
-        <ButtonLogout />
-      </div>
+      <div className="footer__inner container">{children}</div>
     </footer>
   );
 };

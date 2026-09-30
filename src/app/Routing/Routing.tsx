@@ -4,6 +4,8 @@ import { Route, Routes } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import PageSuspense from "./PageSuspense";
 import SessionGuard from "../layouts/SessionGuard";
+import ButtonLogout from "@/features/guest-session/ui/ButtonLogout";
+import Button from "@/shared/ui/Button";
 
 const WelcomePage = lazy(() => import("@/pages/WelcomePage"));
 const RoomPage = lazy(() => import("@/pages/RoomPage"));
@@ -16,6 +18,7 @@ const NotFoundPage = lazy(() => import("@/pages/NotFoundPage"));
 const Routing = () => {
   return (
     <Routes>
+      // для неавторизованных гостей
       <Route element={<SessionGuard access="anonymous" />}>
         <Route
           path={routes.welcome}
@@ -26,7 +29,7 @@ const Routing = () => {
           }
         />
       </Route>
-
+      // для авторизованных гостей
       <Route element={<SessionGuard access="authenticated" />}>
         <Route
           path={routes.invite}
@@ -36,26 +39,31 @@ const Routing = () => {
             </PageSuspense>
           }
         />
-
-        <Route element={<MainLayout />}>
+        // логика такова, что для каждой страницы нужна своя кнопка в footer
+        <Route
+          path={routes.rooms}
+          element={<MainLayout footer={<ButtonLogout />} />}
+        >
           <Route
-            path={routes.room}
-            element={
-              <PageSuspense>
-                <RoomPage />
-              </PageSuspense>
-            }
-          />
-          <Route
-            path={routes.rooms}
+            index
             element={
               <PageSuspense>
                 <RoomsPage />
               </PageSuspense>
             }
           />
+        </Route>
+
+        <Route
+          path={routes.createRoom}
+          element={
+            <MainLayout
+              footer={<Button to={routes.rooms}>Назад к комнатам</Button>}
+            />
+          }
+        >
           <Route
-            path={routes.createRoom}
+            index
             element={
               <PageSuspense>
                 <CreateRoomPage />
@@ -63,8 +71,25 @@ const Routing = () => {
             }
           />
         </Route>
-      </Route>
 
+        <Route
+          path={routes.room}
+          element={
+            <MainLayout
+              footer={<Button to={routes.rooms}>Назад к комнатам</Button>}
+            />
+          }
+        >
+          <Route
+            index
+            element={
+              <PageSuspense>
+                <RoomPage />
+              </PageSuspense>
+            }
+          />
+        </Route>
+      </Route>
       <Route
         path={routes.notFound}
         element={
