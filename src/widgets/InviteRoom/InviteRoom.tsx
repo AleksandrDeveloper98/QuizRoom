@@ -1,8 +1,6 @@
 import { useJoinRoomByInvite } from "@/features/join-room/model/useJoinRoomByInvite";
 import JoinPrivateRoomModal from "@/features/join-room/ui/JoinPrivateRoomModal";
 import type { TInviteRoomProps } from "./types";
-
-import "./InviteRoom.scss";
 import Modal from "@/shared/ui/Modal";
 import Button from "@/shared/ui/Button";
 import { useNavigate } from "react-router-dom";
