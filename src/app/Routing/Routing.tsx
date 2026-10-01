@@ -19,7 +19,7 @@ const NotFoundPage = lazy(() => import("@/pages/NotFoundPage"));
 const Routing = () => {
   return (
     <Routes>
-       {/* для неавторизованных гостей */}
+      {/* для неавторизованных гостей */}
       <Route element={<SessionGuard access="anonymous" />}>
         <Route
           path={routes.welcome}
@@ -30,7 +30,7 @@ const Routing = () => {
           }
         />
       </Route>
-       {/* для авторизованных гостей */}
+      {/* для авторизованных гостей */}
       <Route element={<SessionGuard access="authenticated" />}>
         <Route
           path={routes.invite}
@@ -43,47 +43,39 @@ const Routing = () => {
         {/* логика такова, что для каждой страницы нужна своя кнопка в footer */}
         <Route
           path={routes.rooms}
-          element={<MainLayout footer={<ButtonLogout />} />}
+          element={
+            <PageSuspense>
+              <MainLayout footer={<ButtonLogout />} />{" "}
+            </PageSuspense>
+          }
         >
-          <Route
-            index
-            element={
-              <PageSuspense>
-                <RoomsPage />
-              </PageSuspense>
-            }
-          />
+          <Route index element={<RoomsPage />} />
         </Route>
+
         <Route
           path={routes.createRoom}
           element={
-            <MainLayout
-              footer={<Button to={routes.rooms}>Назад к комнатам</Button>}
-            />
+            <PageSuspense>
+              <MainLayout
+                footer={<Button to={routes.rooms}>Назад к комнатам</Button>}
+              />
+            </PageSuspense>
           }
         >
-          <Route
-            index
-            element={
-              <PageSuspense>
-                <CreateRoomPage />
-              </PageSuspense>
-            }
-          />
+          <Route index element={<CreateRoomPage />} />
         </Route>
+
         <Route
           path={routes.room}
-          element={<MainLayout footer={<LeaveRoomButton />} />}
+          element={
+            <PageSuspense>
+              <MainLayout footer={<LeaveRoomButton />} />
+            </PageSuspense>
+          }
         >
-          <Route
-            index
-            element={
-              <PageSuspense>
-                <RoomPage />
-              </PageSuspense>
-            }
-          />
+          <Route index element={<RoomPage />} />
         </Route>
+        
       </Route>
       <Route
         path={routes.notFound}
