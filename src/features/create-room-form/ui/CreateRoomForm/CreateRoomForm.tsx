@@ -8,7 +8,6 @@ import {
   roundsCountOptions,
   topicOptions,
   maxPlayersOptions,
-  
   roomAccessLabels,
   difficultyOptionsLabels,
   topicOptionsLabels,
@@ -24,6 +23,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
 import { routes } from "@/shared/constants/routes";
 import toast from "react-hot-toast";
+import BlockingLoader from "@/shared/ui/BlockingLoader";
 
 const defaultValues: Partial<TCreateRoom> = {
   name: "",
@@ -59,7 +59,7 @@ const CreateRoomForm = () => {
   const onSubmitForm = (data: TCreateRoom) => {
     createRoomMutation.mutate(data, {
       onSuccess: (room) => {
-        navigate(routes.roomById(room.id));
+        navigate(routes.roomById(room.id), { replace: true });
       },
 
       onError: () => {
@@ -69,129 +69,132 @@ const CreateRoomForm = () => {
   };
 
   return (
-    <form
-      className="create-room-form"
-      onSubmit={handleSubmit(onSubmitForm)}
-      noValidate
-    >
-      <fieldset
-        className="create-room-form__section"
-        disabled={createRoomMutation.isPending}
+    <>
+      <form
+        className="create-room-form"
+        onSubmit={handleSubmit(onSubmitForm)}
+        noValidate
       >
-        <legend className="create-room-form__title h4">
-          Создай игру под свои предпочтения
-        </legend>
-        <Field
-          id="name-room"
-          label="Название комнаты"
-          {...register("name")}
-          error={errors.name?.message}
-        />
-        <Controller
-          control={control}
-          name="maxPlayers"
-          render={({ field }) => (
-            <OptionGroup
-              name={field.name}
-              title="Максимум игроков"
-              options={maxPlayersOptions}
-              value={field.value}
-              onChange={field.onChange}
-            />
-          )}
-        />
-        <Controller
-          control={control}
-          name="roundsCount"
-          render={({ field }) => (
-            <OptionGroup
-              name={field.name}
-              title="Количество вопросов"
-              options={roundsCountOptions}
-              value={field.value}
-              onChange={field.onChange}
-            />
-          )}
-        />
-        <Controller
-          control={control}
-          name="answerTimeSec"
-          render={({ field }) => (
-            <OptionGroup
-              name={field.name}
-              title="Время на ответ"
-              options={answerTimeSecOptions}
-              unit="сек"
-              value={field.value}
-              onChange={field.onChange}
-            />
-          )}
-        />
-        <Controller
-          control={control}
-          name="topic"
-          render={({ field }) => (
-            <OptionGroup
-              name={field.name}
-              title="Тема"
-              options={topicOptions}
-              getLabel={(topic) => topicOptionsLabels[topic]}
-              value={field.value}
-              onChange={field.onChange}
-            />
-          )}
-        />
-        <Controller
-          control={control}
-          name="difficulty"
-          render={({ field }) => (
-            <OptionGroup
-              name={field.name}
-              title="Сложность"
-              options={gameDifficultyOptions}
-              getLabel={(difficulty) => difficultyOptionsLabels[difficulty]}
-              value={field.value}
-              onChange={field.onChange}
-            />
-          )}
-        />
-        <Controller
-          control={control}
-          name="access"
-          render={({ field }) => (
-            <OptionGroup
-              name={field.name}
-              title="Доступ"
-              options={roomAccessOptions}
-              getLabel={(access) => roomAccessLabels[access]}
-              value={field.value}
-              onChange={field.onChange}
-            />
-          )}
-        />
-
-        {accessWatch === "private" && (
-          <Field
-            id="password-room"
-            label="Пароль комнаты"
-            type="password"
-            {...register("password")}
-            error={errors.password?.message}
-          />
-        )}
-      </fieldset>
-      <div className="create-room-form__actions">
-        <Button
-          className="create-room-form__button"
-          type="submit"
+        <fieldset
+          className="create-room-form__section"
           disabled={createRoomMutation.isPending}
         >
-          {createRoomMutation.isPending
-            ? "Создаём комнату..."
-            : "Создать комнату"}
-        </Button>
-      </div>
-    </form>
+          <legend className="create-room-form__title h4">
+            Создай игру под свои предпочтения
+          </legend>
+          <Field
+            id="name-room"
+            label="Название комнаты"
+            {...register("name")}
+            error={errors.name?.message}
+          />
+          <Controller
+            control={control}
+            name="maxPlayers"
+            render={({ field }) => (
+              <OptionGroup
+                name={field.name}
+                title="Максимум игроков"
+                options={maxPlayersOptions}
+                value={field.value}
+                onChange={field.onChange}
+              />
+            )}
+          />
+          <Controller
+            control={control}
+            name="roundsCount"
+            render={({ field }) => (
+              <OptionGroup
+                name={field.name}
+                title="Количество вопросов"
+                options={roundsCountOptions}
+                value={field.value}
+                onChange={field.onChange}
+              />
+            )}
+          />
+          <Controller
+            control={control}
+            name="answerTimeSec"
+            render={({ field }) => (
+              <OptionGroup
+                name={field.name}
+                title="Время на ответ"
+                options={answerTimeSecOptions}
+                unit="сек"
+                value={field.value}
+                onChange={field.onChange}
+              />
+            )}
+          />
+          <Controller
+            control={control}
+            name="topic"
+            render={({ field }) => (
+              <OptionGroup
+                name={field.name}
+                title="Тема"
+                options={topicOptions}
+                getLabel={(topic) => topicOptionsLabels[topic]}
+                value={field.value}
+                onChange={field.onChange}
+              />
+            )}
+          />
+          <Controller
+            control={control}
+            name="difficulty"
+            render={({ field }) => (
+              <OptionGroup
+                name={field.name}
+                title="Сложность"
+                options={gameDifficultyOptions}
+                getLabel={(difficulty) => difficultyOptionsLabels[difficulty]}
+                value={field.value}
+                onChange={field.onChange}
+              />
+            )}
+          />
+          <Controller
+            control={control}
+            name="access"
+            render={({ field }) => (
+              <OptionGroup
+                name={field.name}
+                title="Доступ"
+                options={roomAccessOptions}
+                getLabel={(access) => roomAccessLabels[access]}
+                value={field.value}
+                onChange={field.onChange}
+              />
+            )}
+          />
+
+          {accessWatch === "private" && (
+            <Field
+              id="password-room"
+              label="Пароль комнаты"
+              type="password"
+              {...register("password")}
+              error={errors.password?.message}
+            />
+          )}
+        </fieldset>
+        <div className="create-room-form__actions">
+          <Button
+            className="create-room-form__button"
+            type="submit"
+            disabled={createRoomMutation.isPending}
+          >
+            {createRoomMutation.isPending
+              ? "Создаём комнату..."
+              : "Создать комнату"}
+          </Button>
+        </div>
+      </form>
+      {createRoomMutation.isPending && <BlockingLoader />}
+    </>
   );
 };
 

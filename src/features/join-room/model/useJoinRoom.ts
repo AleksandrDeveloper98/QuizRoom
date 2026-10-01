@@ -36,8 +36,6 @@ export const useJoinRoom = () => {
       },
       {
         onSuccess: () => {
-          setPrivateRoom(null);
-
           navigate(routes.roomById(room.id));
         },
 

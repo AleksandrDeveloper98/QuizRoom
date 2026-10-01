@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
-
+import { useLogoutGuestSessionMutation } from "@/features/guest-session/api/guestSessionMutation";
 import { routes } from "@/shared/constants/routes";
 import Button from "@/shared/ui/Button";
-import { useLogoutGuestSessionMutation } from "@/features/guest-session/api/guestSessionMutation";
+import BlockingLoader from "@/shared/ui/BlockingLoader";
 
 const ButtonLogout = () => {
   const logoutMutation = useLogoutGuestSessionMutation();
@@ -17,9 +17,13 @@ const ButtonLogout = () => {
   };
 
   return (
-    <Button onClick={handleLogout} disabled={logoutMutation.isPending}>
-      {logoutMutation.isPending ? "Подождите..." : "Выйти"}
-    </Button>
+    <>
+      <Button onClick={handleLogout} disabled={logoutMutation.isPending}>
+        {logoutMutation.isPending ? "Подождите..." : "Выйти"}
+      </Button>
+      
+      {logoutMutation.isPending && <BlockingLoader />}
+    </>
   );
 };
 

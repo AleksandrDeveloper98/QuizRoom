@@ -23,6 +23,7 @@ import {
 } from "./model/hooks";
 
 import "./Rooms.scss";
+import BlockingLoader from "@/shared/ui/BlockingLoader";
 
 const Rooms = () => {
   const { access, accessFilter, handleAccessChange } = useRoomsAccessFilter();
@@ -142,6 +143,8 @@ const Rooms = () => {
               onPasswordChange={clearPasswordError}
             />
           )}
+
+          {isPendingJoinRoom && !privateRoom && (<BlockingLoader />)}
         </div>
       </div>
     </section>

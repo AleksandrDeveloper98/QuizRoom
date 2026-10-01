@@ -1,0 +1,12 @@
+.blocking-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: var(--color-transparent-black);
+  cursor: wait;
+}

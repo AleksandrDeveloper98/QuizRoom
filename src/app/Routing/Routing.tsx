@@ -45,7 +45,7 @@ const Routing = () => {
           path={routes.rooms}
           element={
             <PageSuspense>
-              <MainLayout footer={<ButtonLogout />} />{" "}
+              <MainLayout footer={<ButtonLogout />} />
             </PageSuspense>
           }
         >
@@ -75,7 +75,6 @@ const Routing = () => {
         >
           <Route index element={<RoomPage />} />
         </Route>
-        
       </Route>
       <Route
         path={routes.notFound}
