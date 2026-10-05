@@ -15,8 +15,8 @@ export const useRoomsQuery = (params: TRoomsListParams) => {
 export const useRoomQuery = (roomId: string) => {
   return useQuery({
     queryKey: roomQueryKeys.detail(roomId),
-    queryFn: () => roomApi.getById(roomId), 
-    
+    queryFn: () => roomApi.getById(roomId),
+    enabled: Boolean(roomId),
     staleTime: 0,
   });
 };

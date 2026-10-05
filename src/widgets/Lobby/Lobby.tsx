@@ -8,7 +8,7 @@ import LobbyParametersCard from "./ui/LobbyParametersCard";
 import "./Lobby.scss";
 
 const Lobby = (props: TLobbyProps) => {
-  const { room, roomId } = props;
+  const { room, roomId, currentPlayer } = props;
 
   const handleCopyRoomLink = async () => {
     try {
@@ -30,7 +30,10 @@ const Lobby = (props: TLobbyProps) => {
       <div className="lobby__inner container">
         <h1 className="lobby__title">{room.name}</h1>
         <div className="lobby__body">
-          <LobbyPlayersPanel players={room.players} />
+          <LobbyPlayersPanel
+            players={room.players}
+            currentPlayer={currentPlayer}
+          />
           <div className="lobby__sidebar">
             <LobbyParametersCard roomParams={room} />
             <Button onClick={handleCopyRoomLink}>Скопировать ссылку</Button>

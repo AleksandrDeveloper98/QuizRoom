@@ -13,5 +13,6 @@ export const API_ENDPOINTS = {
     join: (roomId: string) => `/rooms/${roomId}/join`,
     byId: (roomId: string) => `/rooms/${roomId}`,
     leave: (roomId: string) => `/rooms/${roomId}/players/me`,
+    ready: (roomId: string) => `/rooms/${roomId}/players/me/ready`,
   },
 } as const;

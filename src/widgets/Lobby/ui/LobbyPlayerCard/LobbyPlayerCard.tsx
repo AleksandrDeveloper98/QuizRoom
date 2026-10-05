@@ -12,11 +12,11 @@ const LobbyPlayerCard = ({ player }: TLobbyPlayerCardProps) => {
         <PlayerIdentity name={name} />
         {role === "host" && <Badge variant="violet">HOST</Badge>}
       </div>
-      {
+      {role === "player" && (
         <Badge variant={isReady ? "green" : "yellow"}>
           {isReady ? "Готов" : "Не готов"}
         </Badge>
-      }
+      )}
     </div>
   );
 };
