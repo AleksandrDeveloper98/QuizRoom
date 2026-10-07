@@ -6,9 +6,11 @@ export const routes = {
 
   room: "/rooms/:roomId",
   roomById: (roomId: string) => `/rooms/${roomId}`,
-
   rooms: "/rooms",
-  createRoom: `/rooms/create`,
+  createRoom: "/rooms/create",
+
+  game: "/games/:gameId",
+  gameById: (gameId: string) => `/games/${gameId}`,
 
   notFound: "*",
 } as const;

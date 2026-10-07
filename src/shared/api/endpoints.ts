@@ -14,5 +14,6 @@ export const API_ENDPOINTS = {
     byId: (roomId: string) => `/rooms/${roomId}`,
     leave: (roomId: string) => `/rooms/${roomId}/players/me`,
     ready: (roomId: string) => `/rooms/${roomId}/players/me/ready`,
+    start: (roomId: string) => `/rooms/${roomId}/start`,
   },
 } as const;

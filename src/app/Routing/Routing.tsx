@@ -1,18 +1,19 @@
-import { routes } from "@/shared/constants/routes";
-import { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
+import { lazy } from "react";
+import LeaveRoomButton from "@/features/leave-room/ui/LeaveRoomButton";
+import ButtonLogout from "@/features/guest-session/ui/ButtonLogout";
+import { routes } from "@/shared/constants/routes";
+import Button from "@/shared/ui/Button";
 import MainLayout from "../layouts/MainLayout";
 import PageSuspense from "./PageSuspense";
 import SessionGuard from "../layouts/SessionGuard";
-import ButtonLogout from "@/features/guest-session/ui/ButtonLogout";
-import Button from "@/shared/ui/Button";
-import LeaveRoomButton from "@/features/leave-room/ui/LeaveRoomButton";
 
 const WelcomePage = lazy(() => import("@/pages/WelcomePage"));
 const RoomPage = lazy(() => import("@/pages/RoomPage"));
 const RoomsPage = lazy(() => import("@/pages/RoomsPage"));
 const CreateRoomPage = lazy(() => import("@/pages/CreateRoomPage"));
 const InviteRoomPage = lazy(() => import("@/pages/InviteRoomPage"));
+const GamePage = lazy(() => import("@/pages/GamePage"));
 
 const NotFoundPage = lazy(() => import("@/pages/NotFoundPage"));
 
@@ -30,6 +31,7 @@ const Routing = () => {
           }
         />
       </Route>
+
       {/* для авторизованных гостей */}
       <Route element={<SessionGuard access="authenticated" />}>
         <Route
@@ -75,7 +77,19 @@ const Routing = () => {
         >
           <Route index element={<RoomPage />} />
         </Route>
+
+        <Route
+          path={routes.game}
+          element={
+            <PageSuspense>
+              <MainLayout footer={<Button>Выйти из игры</Button>} />
+            </PageSuspense>
+          }
+        >
+          <Route index element={<GamePage />} />
+        </Route>
       </Route>
+
       <Route
         path={routes.notFound}
         element={

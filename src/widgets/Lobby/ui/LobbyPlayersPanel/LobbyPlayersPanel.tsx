@@ -1,7 +1,8 @@
 import LobbyPlayerCard from "@/widgets/Lobby/ui/LobbyPlayerCard";
-import type { TLobbyPlayersPanelProps } from "./types";
-import Badge from "@/shared/ui/Badge";
 import ReadyButton from "@/features/room-ready/ui/ReadyButton";
+import StartGameButton from "@/features/start-game/ui/StartGameButton";
+import Badge from "@/shared/ui/Badge";
+import type { TLobbyPlayersPanelProps } from "./types";
 
 import "./LobbyPlayersPanel.scss";
 
@@ -14,14 +15,15 @@ const LobbyPlayersPanel = (props: TLobbyPlayersPanelProps) => {
     (player) => player.isReady,
   ).length;
 
+  const canStartGame =
+    onlyRolePlayers.length > 0 &&
+    onlyRolePlayers.every((player) => player.isReady);
+
   return (
     <div className="lobby-players-panel">
       <div className="lobby-players-panel__header">
         <h2 className="lobby-players-panel__title h4">Игроки</h2>
-        <Badge
-          variant="green"
-          children={`${readyPlayersCount} из ${onlyRolePlayers.length} готовы`}
-        />
+        <Badge variant="green">{`${readyPlayersCount} из ${onlyRolePlayers.length} готовы`}</Badge>
       </div>
       <ul className="lobby-players-panel__list">
         {players.map((player) => (
@@ -33,6 +35,10 @@ const LobbyPlayersPanel = (props: TLobbyPlayersPanelProps) => {
 
       {currentPlayer.role === "player" && (
         <ReadyButton isReady={currentPlayer.isReady} />
+      )}
+
+      {currentPlayer.role === "host" && (
+        <StartGameButton canStartGame={canStartGame} />
       )}
     </div>
   );

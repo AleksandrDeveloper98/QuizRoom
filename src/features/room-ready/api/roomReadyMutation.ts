@@ -10,6 +10,7 @@ export const useRoomReadyMutation = () => {
 
     onSuccess: (_data, variables) =>
       queryClient.invalidateQueries({
+        
         queryKey: roomQueryKeys.detail(variables.roomId),
       }),
   });

@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import { roomQueryKeys } from "@/entities/room/api/roomQueryKeys";
 import { getApiErrorCode } from "@/shared/api/getApiErrorCode";
 import { routes } from "@/shared/constants/routes";
-import { useRoomReadyMutation } from "../api/useRoomReadyMutation";
+import { useRoomReadyMutation } from "../api/roomReadyMutation";
 
 
 export const useRoomReady = () => {
