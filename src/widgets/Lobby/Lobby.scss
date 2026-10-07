@@ -10,6 +10,7 @@
 
   &__sidebar {
     display: grid;
-    row-gap: 20px;
+    grid-template-rows: minmax(0, 1fr) auto;
+    gap: 20px;
   }
 }
