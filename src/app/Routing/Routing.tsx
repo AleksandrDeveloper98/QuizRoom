@@ -7,6 +7,7 @@ import Button from "@/shared/ui/Button";
 import MainLayout from "../layouts/MainLayout";
 import PageSuspense from "./PageSuspense";
 import SessionGuard from "../layouts/SessionGuard";
+import SocketConnection from "../layouts/SocketConnection";
 
 const WelcomePage = lazy(() => import("@/pages/WelcomePage"));
 const RoomPage = lazy(() => import("@/pages/RoomPage"));
@@ -34,59 +35,64 @@ const Routing = () => {
 
       {/* для авторизованных гостей */}
       <Route element={<SessionGuard access="authenticated" />}>
-        <Route
-          path={routes.invite}
-          element={
-            <PageSuspense>
-              <InviteRoomPage />
-            </PageSuspense>
-          }
-        />
-        {/* логика такова, что для каждой страницы нужна своя кнопка в footer */}
-        <Route
-          path={routes.rooms}
-          element={
-            <PageSuspense>
-              <MainLayout footer={<ButtonLogout />} />
-            </PageSuspense>
-          }
-        >
-          <Route index element={<RoomsPage />} />
-        </Route>
+        {/* + сокет */}
+        <Route element={<SocketConnection />}>
 
-        <Route
-          path={routes.createRoom}
-          element={
-            <PageSuspense>
-              <MainLayout
-                footer={<Button to={routes.rooms}>Назад к комнатам</Button>}
-              />
-            </PageSuspense>
-          }
-        >
-          <Route index element={<CreateRoomPage />} />
-        </Route>
+          <Route
+            path={routes.invite}
+            element={
+              <PageSuspense>
+                <InviteRoomPage />
+              </PageSuspense>
+            }
+          />
+          
+          {/* логика такова, что для каждой страницы нужна своя кнопка в footer */}
+          <Route
+            path={routes.rooms}
+            element={
+              <PageSuspense>
+                <MainLayout footer={<ButtonLogout />} />
+              </PageSuspense>
+            }
+          >
+            <Route index element={<RoomsPage />} />
+          </Route>
 
-        <Route
-          path={routes.room}
-          element={
-            <PageSuspense>
-              <MainLayout footer={<LeaveRoomButton />} />
-            </PageSuspense>
-          }
-        >
-          <Route index element={<RoomPage />} />
-        </Route>
+          <Route
+            path={routes.createRoom}
+            element={
+              <PageSuspense>
+                <MainLayout
+                  footer={<Button to={routes.rooms}>Назад к комнатам</Button>}
+                />
+              </PageSuspense>
+            }
+          >
+            <Route index element={<CreateRoomPage />} />
+          </Route>
 
-        <Route
-          path={routes.game}
-          element={
-            <PageSuspense>
-              <MainLayout footer={<Button>Выйти из игры</Button>} />
-            </PageSuspense>
-          }
-        >
-          <Route index element={<GamePage />} />
+          <Route
+            path={routes.room}
+            element={
+              <PageSuspense>
+                <MainLayout footer={<LeaveRoomButton />} />
+              </PageSuspense>
+            }
+          >
+            <Route index element={<RoomPage />} />
+          </Route>
+
+          <Route
+            path={routes.game}
+            element={
+              <PageSuspense>
+                <MainLayout footer={<Button>Выйти из игры</Button>} />
+              </PageSuspense>
+            }
+          >
+            <Route index element={<GamePage />} />
+          </Route>
         </Route>
       </Route>
 

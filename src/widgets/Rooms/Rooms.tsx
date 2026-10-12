@@ -1,15 +1,20 @@
 import { type ReactNode } from "react";
 import clsx from "clsx";
+
 import RoomsList from "@/widgets/Rooms/ui/RoomsList";
 import { useJoinRoom } from "@/features/join-room/model/useJoinRoom";
 import JoinPrivateRoomModal from "@/features/join-room/ui/JoinPrivateRoomModal";
+
 import { useRoomsQuery } from "@/entities/room/api/roomQueries";
+import { useRoomsRealtime } from "@/entities/room/api/roomRealtime";
+
 import Pagination from "@/shared/ui/Pagination";
 import Field from "@/shared/ui/Field";
 import Button from "@/shared/ui/Button";
 import Spinner from "@/shared/ui/Spinner";
 import OptionGroup from "@/shared/ui/OptionGroup";
 import { routes } from "@/shared/constants/routes";
+import BlockingLoader from "@/shared/ui/BlockingLoader";
 
 import {
   roomAccessFilterLabels,
@@ -23,9 +28,10 @@ import {
 } from "./model/hooks";
 
 import "./Rooms.scss";
-import BlockingLoader from "@/shared/ui/BlockingLoader";
 
 const Rooms = () => {
+  useRoomsRealtime();
+
   const { access, accessFilter, handleAccessChange } = useRoomsAccessFilter();
   const { search, debouncedSearch, handleSearchChange } = useRoomsSearch();
   const { page, handlePageChange } = useRoomsPagination();
@@ -144,7 +150,7 @@ const Rooms = () => {
             />
           )}
 
-          {isPendingJoinRoom && !privateRoom && (<BlockingLoader />)}
+          {isPendingJoinRoom && !privateRoom && <BlockingLoader />}
         </div>
       </div>
     </section>
