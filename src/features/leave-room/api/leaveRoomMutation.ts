@@ -8,8 +8,13 @@ export const useLeaveRoomMutation = () => {
   return useMutation({
     mutationFn: leaveRoomApi.leaveRoomById,
 
-    onSuccess: () => {
-      queryClient.invalidateQueries({
+    onSuccess: (_data, roomId) => {
+      queryClient.removeQueries({
+        queryKey: roomQueryKeys.detail(roomId),
+        exact: true,
+      });
+
+      void queryClient.invalidateQueries({
         queryKey: roomQueryKeys.lists(),
       });
     },

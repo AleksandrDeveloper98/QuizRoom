@@ -6,10 +6,12 @@ import { routes } from "@/shared/constants/routes";
 import PageLoader from "@/shared/ui/PageLoader";
 
 import "./RoomPage.scss";
+import { useRoomRealtime } from "@/entities/room/api/roomRealtime";
 
 const RoomPage = () => {
   const { roomId = "" } = useParams();
 
+  useRoomRealtime(roomId);
   const roomQuery = useRoomQuery(roomId);
   const currentGuestPlayerQuery = useCurrentGuestPlayer();
 

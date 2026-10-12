@@ -36,3 +36,47 @@ export const useRoomsRealtime = () => {
     };
   }, [queryClient]);
 };
+
+export const useRoomRealtime = (roomId: string) => {
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    if (!roomId) {
+      return;
+    }
+
+    const subscribe = () => {
+      socket.emit("room:subscribe", {
+        roomId,
+      });
+    };
+
+    const handleRoomUpdated = (payload: { roomId: string }) => {
+      if (payload.roomId !== roomId) {
+        return;
+      }
+      
+      void queryClient.invalidateQueries({
+        queryKey: roomQueryKeys.detail(roomId),
+      });
+    };
+
+    socket.on("connect", subscribe);
+
+    socket.on("room:updated", handleRoomUpdated);
+
+    if (socket.connected) {
+      subscribe();
+    }
+
+    return () => {
+      if (socket.connected) {
+        socket.emit("room:unsubscribe", { roomId });
+      }
+
+      socket.off("connect", subscribe);
+
+      socket.off("room:updated", handleRoomUpdated);
+    };
+  }, [queryClient, roomId]);
+};
