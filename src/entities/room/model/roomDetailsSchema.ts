@@ -3,6 +3,8 @@ import { roomParticipantSchema } from "@/entities/roomPlayer/model/roomParticipa
 import { roomListItemSchema } from "./roomListItemSchema";
 
 export const roomDetailsSchema = roomListItemSchema.extend({
+  activeGameId: z.uuid().nullable(),
+
   players: z.array(roomParticipantSchema),
 });
 

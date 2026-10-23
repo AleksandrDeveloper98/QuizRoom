@@ -7,7 +7,7 @@ export const useJoinRoomMutation = () => {
   const queryClient = useQueryClient();
 
   const invalidateRooms = () => {
-    queryClient.invalidateQueries({
+    return queryClient.invalidateQueries({
       queryKey: roomQueryKeys.lists(),
     });
   };

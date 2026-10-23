@@ -1,5 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
+import type {
+  TGameStartedPayload,
+  TRoomIdPayload,
+} from "@/shared/api/socket/types";
 import { socket } from "@/shared/api/socket/socket";
 import { roomQueryKeys } from "./roomQueryKeys";
 
@@ -38,6 +42,7 @@ export const useRoomsRealtime = () => {
 };
 
 export const useRoomRealtime = (roomId: string) => {
+  const [startedGameId, setStartedGameId] = useState<string | null>(null);
   const queryClient = useQueryClient();
 
   useEffect(() => {
@@ -51,19 +56,38 @@ export const useRoomRealtime = (roomId: string) => {
       });
     };
 
-    const handleRoomUpdated = (payload: { roomId: string }) => {
+    const invalidateRoom = () =>
+      queryClient.invalidateQueries({
+        queryKey: roomQueryKeys.detail(roomId),
+      });
+
+    const handleConnect = () => {
+      subscribe();
+
+      void invalidateRoom();
+    };
+
+    const handleRoomUpdated = (payload: TRoomIdPayload) => {
       if (payload.roomId !== roomId) {
         return;
       }
-      
-      void queryClient.invalidateQueries({
-        queryKey: roomQueryKeys.detail(roomId),
-      });
+
+      void invalidateRoom();
     };
 
-    socket.on("connect", subscribe);
+    const handleGameStarted = (payload: TGameStartedPayload) => {
+      if (payload.roomId !== roomId) {
+        return;
+      }
+
+      setStartedGameId(payload.gameId);
+    };
+
+    socket.on("connect", handleConnect);
 
     socket.on("room:updated", handleRoomUpdated);
+
+    socket.on("game:started", handleGameStarted);
 
     if (socket.connected) {
       subscribe();
@@ -74,9 +98,15 @@ export const useRoomRealtime = (roomId: string) => {
         socket.emit("room:unsubscribe", { roomId });
       }
 
-      socket.off("connect", subscribe);
+      socket.off("connect", handleConnect);
 
       socket.off("room:updated", handleRoomUpdated);
+
+      socket.off("game:started", handleGameStarted);
     };
   }, [queryClient, roomId]);
+
+  return {
+    startedGameId,
+  };
 };

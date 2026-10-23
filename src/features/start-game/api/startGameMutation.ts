@@ -9,16 +9,10 @@ export const useStartGameMutation = () => {
   return useMutation({
     mutationFn: startGameApi.startGame,
 
-    onSuccess: (_data, roomId) =>
-      Promise.all([
-        queryClient.invalidateQueries({
-          queryKey: roomQueryKeys.detail(roomId),
-        }),
-
-        queryClient.invalidateQueries({
-          queryKey: roomQueryKeys.lists(),
-        }),
-      ]),
+    onSuccess: () =>
+      void queryClient.invalidateQueries({
+        queryKey: roomQueryKeys.lists(),
+      }),
 
     onError: (error, roomId) => {
       const code = getApiErrorCode(error);
