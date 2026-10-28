@@ -1,6 +1,6 @@
-import QueryProvider from "./providers/QueryProvider";
-import "@/shared/styles";
 import { BrowserRouter } from "react-router-dom";
+import "@/shared/styles";
+import QueryProvider from "./providers/QueryProvider";
 import Routing from "./Routing";
 
 const App = () => {

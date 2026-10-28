@@ -1,12 +1,12 @@
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCreateGuestSessionMutation } from "@/features/guest-session/api/guestSessionMutation";
-import Field from "@/shared/ui/Field";
-import Button from "@/shared/ui/Button";
 import {
   type TCreateGuestPlayer,
   createGuestPlayerSchema,
 } from "@/entities/guestPlayer/model/guestPlayerSchema";
+import Field from "@/shared/ui/Field";
+import Button from "@/shared/ui/Button";
 
 import "./GuestPlayerForm.scss";
 

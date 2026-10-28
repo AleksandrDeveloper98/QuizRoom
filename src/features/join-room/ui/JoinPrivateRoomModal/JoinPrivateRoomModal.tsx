@@ -1,13 +1,13 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import Modal from "@/shared/ui/Modal";
-import Field from "@/shared/ui/Field";
-import Button from "@/shared/ui/Button";
-import type { TJoinPrivateRoomModalProps } from "./types";
 import {
   roomPasswordSchema,
   type TRoomPassword,
 } from "@/entities/room/model/roomPasswordSchema";
-import { zodResolver } from "@hookform/resolvers/zod";
+import Modal from "@/shared/ui/Modal";
+import Field from "@/shared/ui/Field";
+import Button from "@/shared/ui/Button";
+import type { TJoinPrivateRoomModalProps } from "./types";
 
 import "./JoinPrivateRoomModal.scss";
 

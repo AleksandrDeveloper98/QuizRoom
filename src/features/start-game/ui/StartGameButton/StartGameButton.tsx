@@ -1,7 +1,7 @@
 import Button from "@/shared/ui/Button";
+import BlockingLoader from "@/shared/ui/BlockingLoader";
 import { useStartGame } from "../../model/useStartGame";
 import type { TStartGameButtonProps } from "./types";
-import BlockingLoader from "@/shared/ui/BlockingLoader";
 
 const StartGameButton = (props: TStartGameButtonProps) => {
   const { canStartGame } = props;

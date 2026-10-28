@@ -1,7 +1,7 @@
 import Button from "@/shared/ui/Button";
+import BlockingLoader from "@/shared/ui/BlockingLoader";
 import { useRoomReady } from "../../model/useRoomReady";
 import type { TReadyButtonProps } from "./types";
-import BlockingLoader from "@/shared/ui/BlockingLoader";
 
 const ReadyButton = (props: TReadyButtonProps) => {
   const { isReady } = props;

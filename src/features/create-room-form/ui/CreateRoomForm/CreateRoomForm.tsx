@@ -1,5 +1,15 @@
+import { Controller, useForm, useWatch } from "react-hook-form";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useCreateRoomMutation } from "@/entities/room/api/roomMutations";
+import {
+  createRoomSchema,
+  type TCreateRoom,
+} from "@/entities/room/model/roomSchema";
+import { routes } from "@/shared/constants/routes";
+import BlockingLoader from "@/shared/ui/BlockingLoader";
 import Field from "@/shared/ui/Field";
-import "./CreateRoomForm.scss";
 import OptionGroup from "@/shared/ui/OptionGroup";
 import {
   answerTimeSecOptions,
@@ -13,17 +23,8 @@ import {
   topicOptionsLabels,
 } from "@/shared/config/quizOptions";
 import Button from "@/shared/ui/Button";
-import { useCreateRoomMutation } from "@/entities/room/api/roomMutations";
-import {
-  createRoomSchema,
-  type TCreateRoom,
-} from "@/entities/room/model/roomSchema";
-import { Controller, useForm, useWatch } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useNavigate } from "react-router-dom";
-import { routes } from "@/shared/constants/routes";
-import toast from "react-hot-toast";
-import BlockingLoader from "@/shared/ui/BlockingLoader";
+
+import "./CreateRoomForm.scss";
 
 const defaultValues: Partial<TCreateRoom> = {
   name: "",

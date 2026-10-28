@@ -1,6 +1,6 @@
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
-import { roomQueryKeys } from "./roomQueryKeys";
 import type { TRoomsListParams } from "../model/types";
+import { roomQueryKeys } from "./roomQueryKeys";
 import { roomApi } from "./roomApi";
 
 export const useRoomsQuery = (params: TRoomsListParams) => {

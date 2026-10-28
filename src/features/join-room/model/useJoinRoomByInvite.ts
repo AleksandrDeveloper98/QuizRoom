@@ -1,11 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-
 import { routes } from "@/shared/constants/routes";
-
-import { useJoinRoomMutation } from "../api/joinRoomMutation";
 import { getApiErrorCode } from "@/shared/api/getApiErrorCode";
+import { useJoinRoomMutation } from "../api/joinRoomMutation";
 
 export const useJoinRoomByInvite = (roomId: string) => {
   const navigate = useNavigate();

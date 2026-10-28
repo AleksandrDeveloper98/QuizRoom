@@ -1,6 +1,6 @@
 import GuestPlayerForm from "@/features/guest-session/ui/GuestPlayerForm";
-import "./WelcomePage.scss";
 import Logo from "@/shared/ui/Logo";
+import "./WelcomePage.scss";
 
 const WelcomePage = () => {
   const titleId = "welcome-page-title";

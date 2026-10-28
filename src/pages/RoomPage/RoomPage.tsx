@@ -1,10 +1,10 @@
 import { Navigate, useParams } from "react-router-dom";
 import Lobby from "@/widgets/Lobby";
 import { useRoomQuery } from "@/entities/room/api/roomQueries";
+import { useRoomRealtime } from "@/entities/room/api/roomRealtime";
 import { useCurrentGuestPlayer } from "@/entities/guestPlayer/api/guestPlayerQueries";
 import { routes } from "@/shared/constants/routes";
 import PageLoader from "@/shared/ui/PageLoader";
-import { useRoomRealtime } from "@/entities/room/api/roomRealtime";
 
 import "./RoomPage.scss";
 

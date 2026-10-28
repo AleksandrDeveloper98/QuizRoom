@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { guestSessionApi } from "./guestSessionApi";
 import { guestPlayerQueryKeys } from "@/entities/guestPlayer/api/guestPlayerQueryKeys";
+import { guestSessionApi } from "./guestSessionApi";
 
 export const useCreateGuestSessionMutation = () => {
   const queryClient = useQueryClient();

@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { startGameApi } from "./startGameApi";
 import { roomQueryKeys } from "@/entities/room/api/roomQueryKeys";
 import { getApiErrorCode } from "@/shared/api/getApiErrorCode";
+import { startGameApi } from "./startGameApi";
 
 export const useStartGameMutation = () => {
   const queryClient = useQueryClient();

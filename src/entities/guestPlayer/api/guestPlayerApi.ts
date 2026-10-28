@@ -1,11 +1,11 @@
 import { httpClient } from "@/shared/api/httpClient";
+import { API_BASE_URL } from "@/shared/api/baseUrl";
+import { API_ENDPOINTS } from "@/shared/api/endpoints";
+import { HttpError } from "@/shared/api/httpError";
 import {
   guestPlayerSchema,
   type TGuestPlayer,
 } from "../model/guestPlayerSchema";
-import { API_BASE_URL } from "@/shared/api/baseUrl";
-import { API_ENDPOINTS } from "@/shared/api/endpoints";
-import { HttpError } from "@/shared/api/httpError";
 
 export const guestPlayerApi = {
   getCurrent: async (): Promise<TGuestPlayer | null> => {

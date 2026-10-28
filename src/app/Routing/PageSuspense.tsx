@@ -1,5 +1,5 @@
-import PageLoader from "@/shared/ui/PageLoader";
 import { Suspense, type ReactNode } from "react";
+import PageLoader from "@/shared/ui/PageLoader";
 
 type TPageSuspenseProps = {
   children: ReactNode;
