@@ -42,7 +42,8 @@ export const useRoomsRealtime = () => {
 };
 
 export const useRoomRealtime = (roomId: string) => {
-  const [startedGameId, setStartedGameId] = useState<string | null>(null);
+  const [startedGameId, setStartedGameId] =
+    useState<TGameStartedPayload | null>(null);
   const queryClient = useQueryClient();
 
   useEffect(() => {
@@ -80,7 +81,7 @@ export const useRoomRealtime = (roomId: string) => {
         return;
       }
 
-      setStartedGameId(payload.gameId);
+      setStartedGameId(payload);
     };
 
     socket.on("connect", handleConnect);
@@ -107,6 +108,7 @@ export const useRoomRealtime = (roomId: string) => {
   }, [queryClient, roomId]);
 
   return {
-    startedGameId,
+    startedGameId:
+      startedGameId?.roomId === roomId ? startedGameId.gameId : null,
   };
 };
