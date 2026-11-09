@@ -23,8 +23,6 @@ export const activeQuestionSchema = baseQuestionSchema;
 export const questionSchema = baseQuestionSchema
   .extend({
     correctOptionId: z.string().min(1),
-
-    explanation: z.string().trim().min(1),
   })
   .superRefine((question, ctx) => {
     const correctOptionExists = question.answerOptions.some(
