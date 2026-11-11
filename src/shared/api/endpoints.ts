@@ -16,4 +16,8 @@ export const API_ENDPOINTS = {
     ready: (roomId: string) => `/rooms/${roomId}/players/me/ready`,
     start: (roomId: string) => `/rooms/${roomId}/start`,
   },
+
+  game: {
+    byId: (gameId: string) => `/games/${gameId}`,
+  },
 } as const;
