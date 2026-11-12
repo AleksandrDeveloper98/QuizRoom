@@ -70,7 +70,7 @@ const Rooms = () => {
     roomsListContent = (
       <p className="rooms__notification">Ошибка при загрузке комнат...</p>
     );
-  } else if (roomsList.items.length === 0 && search !== "") {
+  } else if (roomsList.items.length === 0 && debouncedSearch !== "") {
     roomsListContent = (
       <p className="rooms__notification">Комната не найдена...</p>
     );
