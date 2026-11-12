@@ -68,11 +68,15 @@ const Rooms = () => {
     roomsListContent = <Spinner size="large" />;
   } else if (isError) {
     roomsListContent = (
-      <p className="rooms__notification">Ошибка при загрузки комнат...</p>
+      <p className="rooms__notification">Ошибка при загрузке комнат...</p>
+    );
+  } else if (roomsList.items.length === 0 && search !== "") {
+    roomsListContent = (
+      <p className="rooms__notification">Комната не найдена...</p>
     );
   } else if (roomsList.items.length === 0) {
     roomsListContent = (
-      <p className="rooms__notification">Игровых комнат пока что нету...</p>
+      <p className="rooms__notification">Игровых комнат пока нет...</p>
     );
   } else {
     roomsListContent = (
