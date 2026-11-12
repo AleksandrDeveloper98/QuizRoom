@@ -25,18 +25,17 @@ export const useLeaveGame = () => {
         switch (code) {
           case "SESSION_NOT_FOUND":
             toast.error("Время сессии истекло");
-            navigate(routes.welcome, { replace: true });
             break;
           case "NOT_GAME_PLAYER":
             toast.error("Вы больше не являетесь участником игры");
             navigate(routes.rooms, { replace: true });
             break;
           case "GAME_NOT_FOUND":
-            toast.error("Комнаты с игрой больше не существует");
+            toast.error("Игра больше не существует");
             navigate(routes.rooms, { replace: true });
             break;
-          case "GAME_ALREADY_FINISHED":
-            toast.error("Игра завершилась");
+          case "GAME_NOT_CURRENT":
+            toast.error("Эта игра уже неактуальна");
             navigate(routes.rooms, { replace: true });
             break;
           default:

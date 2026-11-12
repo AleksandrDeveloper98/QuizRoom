@@ -1,4 +1,4 @@
-import { Navigate, Outlet, useLocation } from "react-router-dom";
+import { matchPath, Navigate, Outlet, useLocation } from "react-router-dom";
 import { useCurrentGuestPlayer } from "@/entities/guestPlayer/api/guestPlayerQueries";
 import PageLoader from "@/shared/ui/PageLoader";
 import { routes } from "@/shared/constants/routes";
@@ -36,9 +36,16 @@ const SessionGuard = (props: TSessionGuardProps) => {
 
   if (access === "authenticated" && !hasSession) {
     const currentPath = `${location.pathname}${location.search}${location.hash}`;
+    const gameMatchPath = matchPath(routes.game, location.pathname);
+
+    const returnToPath = gameMatchPath ? routes.rooms : currentPath;
 
     return (
-      <Navigate to={routes.welcome} state={{ returnTo: currentPath }} replace />
+      <Navigate
+        to={routes.welcome}
+        state={{ returnTo: returnToPath }}
+        replace
+      />
     );
   }
 

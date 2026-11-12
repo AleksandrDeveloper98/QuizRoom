@@ -1,6 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { guestPlayerQueryKeys } from "@/entities/guestPlayer/api/guestPlayerQueryKeys";
 import { guestSessionApi } from "./guestSessionApi";
+import { roomQueryKeys } from "@/entities/room/api/roomQueryKeys";
+import { gameQueryKeys } from "@/entities/game/api/gameQueryKeys";
 
 export const useCreateGuestSessionMutation = () => {
   const queryClient = useQueryClient();
@@ -10,6 +12,14 @@ export const useCreateGuestSessionMutation = () => {
 
     onSuccess: (player) => {
       queryClient.setQueryData(guestPlayerQueryKeys.current(), player);
+      
+      queryClient.removeQueries({
+        queryKey: roomQueryKeys.all,
+      });
+
+      queryClient.removeQueries({
+        queryKey: gameQueryKeys.all,
+      });
     },
   });
 };
@@ -22,6 +32,14 @@ export const useLogoutGuestSessionMutation = () => {
 
     onSuccess: () => {
       queryClient.setQueryData(guestPlayerQueryKeys.current(), null);
+
+      queryClient.removeQueries({
+        queryKey: roomQueryKeys.all,
+      });
+
+      queryClient.removeQueries({
+        queryKey: gameQueryKeys.all,
+      });
     },
   });
 };
