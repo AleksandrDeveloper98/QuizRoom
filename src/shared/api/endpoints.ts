@@ -18,6 +18,7 @@ export const API_ENDPOINTS = {
   },
 
   game: {
+    leave: (gameId: string) => `/games/${gameId}/players/me`,
     byId: (gameId: string) => `/games/${gameId}`,
   },
 } as const;

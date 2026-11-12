@@ -8,6 +8,7 @@ import MainLayout from "../layouts/MainLayout";
 import PageSuspense from "./PageSuspense";
 import SessionGuard from "../layouts/SessionGuard";
 import SocketConnection from "../layouts/SocketConnection";
+import LeaveGameButton from "@/features/leave-game/ui/LeaveGameButton";
 
 const WelcomePage = lazy(() => import("@/pages/WelcomePage"));
 const RoomPage = lazy(() => import("@/pages/RoomPage"));
@@ -37,7 +38,6 @@ const Routing = () => {
       <Route element={<SessionGuard access="authenticated" />}>
         {/* + сокет */}
         <Route element={<SocketConnection />}>
-
           <Route
             path={routes.invite}
             element={
@@ -46,7 +46,7 @@ const Routing = () => {
               </PageSuspense>
             }
           />
-          
+
           {/* логика такова, что для каждой страницы нужна своя кнопка в footer */}
           <Route
             path={routes.rooms}
@@ -87,7 +87,7 @@ const Routing = () => {
             path={routes.game}
             element={
               <PageSuspense>
-                <MainLayout footer={<Button>Выйти из игры</Button>} />
+                <MainLayout footer={<LeaveGameButton />} />
               </PageSuspense>
             }
           >
