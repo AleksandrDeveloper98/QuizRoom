@@ -1,0 +1,10 @@
+.question-card {
+  background-color: var(--color-graphite-black);
+  padding: 20px;
+  border: var(--border);
+  border-radius: var(--border-radius-m);
+
+  &__topic {
+    color: var(--color-lavender-violet);
+  }
+}
