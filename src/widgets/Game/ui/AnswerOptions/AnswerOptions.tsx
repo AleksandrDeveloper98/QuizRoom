@@ -10,7 +10,7 @@ const AnswerOptions = (props: TAnswerOptionsProps) => {
     <div className="answer-options">
       <ul className="answer-options__list">
         {options.map((option, index) => (
-          <li className="answer-options__item">
+          <li className="answer-options__item" key={index}>
             <button className="answer-options__button">
               <span className="answer-options__letter">
                 {ANSWER_LETTER[index]}

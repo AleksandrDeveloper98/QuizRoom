@@ -1,0 +1,27 @@
+.game-player-card {
+  display: grid;
+  align-items: center;
+  grid-template-columns: auto 1fr;
+  border: var(--border);
+  border-radius: var(--border-radius-s);
+  padding: 10px;
+
+  &__body {
+    display: grid;
+    row-gap: 10px;
+    border-left: var(--border);
+    padding-left: 10px;
+    margin-left: 10px;
+  }
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 20px;
+  }
+
+  &__points{
+    color: var(--color-white);
+  }
+}

@@ -1,0 +1,13 @@
+.game-leaderboard {
+  display: grid;
+  row-gap: 20px;
+  padding: 20px;
+  background-color: var(--color-graphite-black);
+  border-left: var(--border);
+  border-radius: var(--border-radius-l);
+
+  &__list {
+    display: grid;
+    row-gap: 15px;
+  }
+}

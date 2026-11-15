@@ -1,3 +1,16 @@
 .game {
+  &__inner {
+    display: grid;
+    gap: 30px;
 
+    @include laptop-above {
+      grid-template-columns: auto 25%;
+    }
+  }
+
+  &__body{
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+  }
 }

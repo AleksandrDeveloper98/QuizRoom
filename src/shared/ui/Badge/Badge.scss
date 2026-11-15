@@ -22,4 +22,9 @@
     background-color: var(--color-violet-dark);
     color: var(--color-lavender-violet);
   }
+
+  &--transparent-gray {
+    background-color: transparent;
+    color: var(--color-gray);
+  }
 }

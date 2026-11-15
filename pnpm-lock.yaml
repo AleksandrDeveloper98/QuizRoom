@@ -26,6 +26,9 @@ importers:
       react:
         specifier: ^19.2.8
         version: 19.2.8
+      react-circular-progressbar:
+        specifier: ^2.2.0
+        version: 2.2.0(react@19.2.8)
       react-dom:
         specifier: ^19.2.8
         version: 19.2.8(react@19.2.8)
@@ -1892,6 +1895,11 @@ packages:
         optional: true
       '@types/react-dom':
         optional: true
+
+  react-circular-progressbar@2.2.0:
+    resolution: {integrity: sha512-cgyqEHOzB0nWMZjKfWN3MfSa1LV3OatcDjPz68lchXQUEiBD5O1WsAtoVK4/DSL0B4USR//cTdok4zCBkq8X5g==}
+    peerDependencies:
+      react: '>=0.14.0'
 
   react-dom@19.2.8:
     resolution: {integrity: sha512-rVprimfGBG3DR+Tq0IQG2DT5PxKth1WIGDmj5yPmlzr4YBe7uyE+Du4oVqTDXZSHGGGXRtTJEGSSePyQCMBglQ==}
@@ -3913,6 +3921,10 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.2.18
       '@types/react-dom': 19.2.4(@types/react@19.2.18)
+
+  react-circular-progressbar@2.2.0(react@19.2.8):
+    dependencies:
+      react: 19.2.8
 
   react-dom@19.2.8(react@19.2.8):
     dependencies:

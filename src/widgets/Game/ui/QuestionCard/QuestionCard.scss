@@ -1,4 +1,7 @@
 .question-card {
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
   background-color: var(--color-graphite-black);
   padding: 20px;
   border: var(--border);

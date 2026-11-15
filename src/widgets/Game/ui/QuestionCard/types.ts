@@ -5,4 +5,6 @@ type TTopic = (typeof topicOptions)[number];
 export type TQuestionCardProps = {
   topic: TTopic;
   title: string;
+  phaseEndsAt: string;
+  durationSeconds: number;
 };

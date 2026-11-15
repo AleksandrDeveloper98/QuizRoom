@@ -83,3 +83,4 @@ export const gameStateSchema = z.union([
 ]);
 
 export type TGameState = z.infer<typeof gameStateSchema>;
+export type TLeaderboardPlayer = z.infer<typeof leaderboardPlayerSchema>;

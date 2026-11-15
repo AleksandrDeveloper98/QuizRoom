@@ -1,7 +1,44 @@
 .answer-options {
-    &__button{
-        border: none;
-        background-color: transparent;
-        color: var(--color-white);
+  &__list {
+    display: grid;
+    gap: 10px;
+    
+    @include laptop-above{
+        grid-template-columns: repeat(2, 1fr);
+        
     }
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    border: var(--border);
+    border-radius: var(--border-radius-m);
+    background-color: var(--color-graphite-black);
+    color: var(--color-white);
+    padding: 10px;
+    width: 100%;
+
+    &:disabled{
+        opacity: 0.6;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    @include hover() {
+      .answer-options__option {
+        color: var(--color-lavender-violet);
+      }
+      border-color: var(--color-lavender-violet);
+    }
+  }
+
+  &__letter {
+    @include flex-center();
+    @include square(25px);
+    border: var(--border);
+    border-radius: 50%;
+    font-size: 12px;
+  }
 }
