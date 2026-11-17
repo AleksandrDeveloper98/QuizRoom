@@ -10,7 +10,7 @@ export const useCountdown = (phaseEndsAt: string) => {
 
     updateTime();
 
-    const intervalId = setInterval(updateTime, 1000);
+    const intervalId = setInterval(updateTime, 100);
 
     return () => {
       clearInterval(intervalId);

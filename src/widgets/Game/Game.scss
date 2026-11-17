@@ -4,13 +4,17 @@
     gap: 30px;
 
     @include laptop-above {
-      grid-template-columns: auto 25%;
+      grid-template-columns: minmax(0, 1fr) 25%;
     }
   }
 
-  &__body{
+  &__body {
     display: flex;
     flex-direction: column;
     row-gap: 20px;
+  }
+
+  &__phase-hint {
+    color: var(--color-lavender-violet);
   }
 }

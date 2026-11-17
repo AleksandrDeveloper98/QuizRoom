@@ -2,10 +2,9 @@
   &__list {
     display: grid;
     gap: 10px;
-    
-    @include laptop-above{
-        grid-template-columns: repeat(2, 1fr);
-        
+
+    @include laptop-above {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 
@@ -13,30 +12,43 @@
     display: flex;
     align-items: center;
     column-gap: 10px;
-    border: var(--border);
-    border-radius: var(--border-radius-m);
-    background-color: var(--color-graphite-black);
-    color: var(--color-white);
     padding: 10px;
     width: 100%;
+    background-color: var(--color-graphite-black);
+    color: var(--color-white);
+    border: var(--border);
+    border-radius: var(--border-radius-m);
 
-    &:disabled{
-        opacity: 0.6;
-        cursor: not-allowed;
-        pointer-events: none;
+    &--selected-answer {
+      border-color: var(--color-lavender-violet);
     }
 
-    @include hover() {
-      .answer-options__option {
-        color: var(--color-lavender-violet);
+    &--correct-answer {
+      border-color: var(--color-green);
+    }
+
+    &--incorrect-answer {
+      border-color: var(--color-red);
+    }
+
+    &:disabled {
+      cursor: default;
+    }
+
+    &:not(:disabled) {
+      @include hover() {
+        .answer-options__option {
+          color: var(--color-lavender-violet);
+        }
+        border-color: var(--color-lavender-violet);
       }
-      border-color: var(--color-lavender-violet);
     }
   }
 
   &__letter {
     @include flex-center();
     @include square(25px);
+    flex-shrink: 0;
     border: var(--border);
     border-radius: 50%;
     font-size: 12px;
