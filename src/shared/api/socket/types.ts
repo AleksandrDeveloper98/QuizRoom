@@ -2,6 +2,10 @@ export type TRoomIdPayload = {
   roomId: string;
 };
 
+export type TGameIdPayload = {
+  gameId: string;
+};
+
 export type TGameStartedPayload = {
   gameId: string;
 } & TRoomIdPayload;
@@ -12,6 +16,9 @@ export type TClientToServerEvents = {
 
   "room:subscribe": (payload: TRoomIdPayload) => void;
   "room:unsubscribe": (payload: TRoomIdPayload) => void;
+
+  "game:subscribe": (payload: TGameIdPayload) => void;
+  "game:unsubscribe": (payload: TGameIdPayload) => void;
 };
 
 export type TServerToClientEvents = {
@@ -20,4 +27,5 @@ export type TServerToClientEvents = {
   "room:updated": (payload: TRoomIdPayload) => void;
 
   "game:started": (payload: TGameStartedPayload) => void;
+  "game:updated": (payload: TGameIdPayload) => void;
 };

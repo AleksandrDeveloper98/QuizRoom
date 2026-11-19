@@ -3,10 +3,13 @@ import Game from "@/widgets/Game";
 import { useGameQuery } from "@/entities/game/api/gameQueries";
 import PageLoader from "@/shared/ui/PageLoader";
 import { routes } from "@/shared/constants/routes";
+import { useGameRealTime } from "@/entities/game/api/gameRealtime";
 
 const GamePage = () => {
   const { gameId } = useParams();
   const { data: game, isPending, isError } = useGameQuery(gameId ?? "");
+
+  useGameRealTime(gameId ?? "");
 
   if (!gameId) {
     return <Navigate to={routes.rooms} replace />;
