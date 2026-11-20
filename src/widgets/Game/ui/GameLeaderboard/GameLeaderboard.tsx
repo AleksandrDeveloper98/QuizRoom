@@ -1,6 +1,5 @@
 import GamePlayerCard from "../GamePlayerCard";
 import type { TGameLeaderboardProps } from "./types";
-
 import "./GameLeaderboard.scss";
 
 const GameLeaderboard = (props: TGameLeaderboardProps) => {

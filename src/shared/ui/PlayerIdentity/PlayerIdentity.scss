@@ -1,8 +1,12 @@
 .player-identity {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   column-gap: 10px;
   color: var(--color-white);
+
+  &--col {
+    flex-direction: column;
+  }
 
   &__circle {
     @include flex-center(true);

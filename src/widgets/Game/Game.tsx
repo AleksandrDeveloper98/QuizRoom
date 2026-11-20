@@ -3,6 +3,7 @@ import AnswerOptions from "@/widgets/Game/ui/AnswerOptions";
 import GameLeaderboard from "@/widgets/Game/ui/GameLeaderboard";
 import { useSubmitAnswer } from "@/features/submit-answer";
 import type { TGameProps } from "./types";
+import GameResults from "./ui/GameResults";
 import "./Game.scss";
 
 const REVEAL_DURATION_SECONDS = 3;
@@ -12,7 +13,14 @@ const Game = (props: TGameProps) => {
   const { submitAnswer, isSubmitting } = useSubmitAnswer(game.id);
 
   if (game.status === "finished") {
-    return <p>Итоговая таблица</p>;
+    return (
+      <GameResults
+        players={game.players}
+        roomId={game.roomId}
+        totalQuestions={game.roundsCount}
+        currentPlayerId={game.me.playerId}
+      />
+    );
   }
 
   const isAnswering = game.phase === "answering";
@@ -32,6 +40,9 @@ const Game = (props: TGameProps) => {
     <section className="game">
       <div className="game__inner container">
         <div className="game__body">
+          <span>
+            Текущий раунд: {game.currentRound} / {game.roundsCount}
+          </span>
           <QuestionCard
             question={game.currentQuestion.question}
             topic={game.currentQuestion.topic}

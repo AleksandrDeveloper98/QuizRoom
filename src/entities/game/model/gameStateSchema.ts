@@ -60,14 +60,18 @@ const revealGameStateSchema = playingGameStateSchema.extend({
   }),
 });
 
+const resultPlayerSchema = leaderboardPlayerSchema
+  .omit({ hasAnswered: true })
+  .extend({
+    correctAnswersCount: z.number().int().nonnegative(),
+    finalPlace: z.number().int().positive(),
+  });
+
 const finishedGameStateSchema = baseGameStateSchema.extend({
+  roomId: z.uuid(),
   status: z.literal(gameStatusOptions.finished),
 
-  players: z.array(
-    leaderboardPlayerSchema.omit({ hasAnswered: true }).extend({
-      finalPlace: z.number().int().positive(),
-    }),
-  ),
+  players: z.array(resultPlayerSchema),
 
   me: z.object({
     playerId: z.uuid(),
@@ -84,3 +88,4 @@ export const gameStateSchema = z.union([
 
 export type TGameState = z.infer<typeof gameStateSchema>;
 export type TLeaderboardPlayer = z.infer<typeof leaderboardPlayerSchema>;
+export type TResultPlayer = z.infer<typeof resultPlayerSchema>;

@@ -1,0 +1,26 @@
+.player-result-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--color-graphite-black);
+  border: var(--border);
+  border-radius: var(--border-radius-m);
+  padding: 10px;
+  width: 100%;
+
+  &--current-player {
+    border-color: var(--color-violet);
+  }
+
+  &__info {
+    display: flex;
+    align-items: center;
+    column-gap: 7px;
+  }
+  &__results {
+    display: inline-flex;
+    flex-direction: column;
+    row-gap: 5px;
+    color: var(--color-white);
+  }
+}

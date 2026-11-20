@@ -29,7 +29,7 @@ import "./CreateRoomForm.scss";
 const defaultValues: Partial<TCreateRoom> = {
   name: "",
   maxPlayers: 2,
-  roundsCount: 15,
+  roundsCount: 10,
   answerTimeSec: 10,
   topic: "general",
   access: "public",
