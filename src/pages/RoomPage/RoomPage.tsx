@@ -5,6 +5,7 @@ import { useRoomRealtime } from "@/entities/room/api/roomRealtime";
 import { useCurrentGuestPlayer } from "@/entities/guestPlayer/api/guestPlayerQueries";
 import { routes } from "@/shared/constants/routes";
 import PageLoader from "@/shared/ui/PageLoader";
+import ErrorMessage from "@/shared/ui/ErrorMessage";
 
 import "./RoomPage.scss";
 
@@ -28,8 +29,8 @@ const RoomPage = () => {
     return <PageLoader />;
   }
 
-  if (roomQuery.isError || currentGuestPlayerQuery.isError) {
-    return <p>Не удалось загрузить данные комнаты</p>;
+  if (roomQuery.isError) {
+    return <ErrorMessage title="Не удалось загрузить данные комнаты" />;
   }
 
   const room = roomQuery.data;

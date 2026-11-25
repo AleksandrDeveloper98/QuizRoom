@@ -4,10 +4,17 @@ import { useGameQuery } from "@/entities/game/api/gameQueries";
 import PageLoader from "@/shared/ui/PageLoader";
 import { routes } from "@/shared/constants/routes";
 import { useGameRealTime } from "@/entities/game/api/gameRealtime";
+import ErrorMessage from "@/shared/ui/ErrorMessage";
 
 const GamePage = () => {
   const { gameId } = useParams();
-  const { data: game, isPending, isError } = useGameQuery(gameId ?? "");
+  const {
+    data: game,
+    isPending,
+    isError,
+    refetch,
+    isFetching,
+  } = useGameQuery(gameId ?? "");
 
   useGameRealTime(gameId ?? "");
 
@@ -19,7 +26,13 @@ const GamePage = () => {
     return <PageLoader fullscreen />;
   }
   if (isError) {
-    return <p>Ошибка</p>; // Доработать потом
+    return (
+      <ErrorMessage
+        title="Ошибка в игре"
+        onRetry={refetch}
+        isRetrying={isFetching}
+      />
+    );
   }
 
   return <Game game={game} />;

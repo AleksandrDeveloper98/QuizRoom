@@ -1,10 +1,11 @@
 import { Navigate, useParams } from "react-router-dom";
+import UpdateRoomForm from "@/features/update-room-settings/ui/UpdateRoomForm";
 import { useCurrentGuestPlayer } from "@/entities/guestPlayer/api/guestPlayerQueries";
 import { useRoomQuery } from "@/entities/room/api/roomQueries";
-import UpdateRoomForm from "@/features/update-room-settings/ui/UpdateRoomForm";
 import { routes } from "@/shared/constants/routes";
 import Button from "@/shared/ui/Button";
 import PageLoader from "@/shared/ui/PageLoader";
+import ErrorMessage from "@/shared/ui/ErrorMessage";
 import "./UpdateRoomPage.scss";
 
 const UpdateRoomPage = () => {
@@ -21,7 +22,25 @@ const UpdateRoomPage = () => {
   }
 
   if (roomQuery.isError || currentPlayerQuery.isError) {
-    return <Navigate to={routes.roomById(roomId)} replace />;
+    const handleRetry = () => {
+      if (roomQuery.isError) {
+        void roomQuery.refetch();
+      }
+
+      if (currentPlayerQuery.isError) {
+        void currentPlayerQuery.refetch();
+      }
+    };
+
+    return (
+      <ErrorMessage
+        title="Ошибка при загрузки данных"
+        onRetry={handleRetry}
+        isRetrying={roomQuery.isFetching || currentPlayerQuery.isFetching}
+        backTo={routes.roomById(roomId)}
+        backLabel="Вернуться в лобби"
+      />
+    );
   }
 
   const room = roomQuery.data;
