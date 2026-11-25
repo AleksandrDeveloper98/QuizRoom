@@ -1,0 +1,24 @@
+.error-message {
+  @include flex-center();
+  flex: 1;
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: var(--border);
+    padding: 25px;
+    border-radius: var(--border-radius-l);
+    text-align: center;
+    row-gap: 15px;
+  }
+
+  &__icon {
+    color: var(--color-red);
+  }
+
+  &__actions {
+    display: flex;
+    column-gap: 10px;
+  }
+}
