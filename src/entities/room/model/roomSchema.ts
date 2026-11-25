@@ -12,15 +12,14 @@ import {
   answerTimeSecSchema,
   roundsCountSchema,
 } from "@/shared/lib/validation/quizValueSchemas";
-
-const roomNameSchema = z
-  .string()
-  .trim()
-  .min(1, "Поле не может быть пустым")
-  .max(15, "Максимум 15 символов");
+import type { TRoomAccess } from "./types";
 
 export const roomSettingsSchema = z.object({
-  name: roomNameSchema,
+  name: z
+    .string()
+    .trim()
+    .min(1, "Поле не может быть пустым")
+    .max(15, "Максимум 15 символов"),
 
   maxPlayers: maxPlayersSchema,
 
@@ -54,6 +53,26 @@ export const createRoomSchema = roomSettingsSchema
     }
   });
 
+export const getUpdateRoomSchema = (initialAccess: TRoomAccess) => {
+  return roomSettingsSchema
+    .extend({
+      password: z.string().trim().max(10, "Максимум 10 символов").optional(),
+    })
+    .superRefine((data, ctx) => {
+      if (
+        initialAccess === "public" &&
+        data.access === "private" &&
+        !data.password
+      ) {
+        ctx.addIssue({
+          code: "custom",
+          path: ["password"],
+          message: "Для приватной комнаты нужен пароль",
+        });
+      }
+    });
+};
+
 export const roomSchema = roomSettingsSchema.extend({
   id: z.uuid(),
   status: z.enum(roomStatusOptions),
@@ -62,3 +81,4 @@ export const roomSchema = roomSettingsSchema.extend({
 
 export type TRoom = z.infer<typeof roomSchema>;
 export type TCreateRoom = z.infer<typeof createRoomSchema>;
+export type TUpdateRoom = z.infer<ReturnType<typeof getUpdateRoomSchema>>;

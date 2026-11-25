@@ -15,11 +15,12 @@ export const API_ENDPOINTS = {
     leave: (roomId: string) => `/rooms/${roomId}/players/me`,
     ready: (roomId: string) => `/rooms/${roomId}/players/me/ready`,
     start: (roomId: string) => `/rooms/${roomId}/start`,
+    update: (roomId: string) => `/rooms/${roomId}/update`,
   },
 
   game: {
     leave: (gameId: string) => `/games/${gameId}/players/me`,
     byId: (gameId: string) => `/games/${gameId}`,
-    submitAnswer : (gameId: string) => `/games/${gameId}/answers`,
+    submitAnswer: (gameId: string) => `/games/${gameId}/answers`,
   },
 } as const;

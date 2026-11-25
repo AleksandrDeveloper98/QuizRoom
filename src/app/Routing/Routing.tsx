@@ -2,13 +2,13 @@ import { Route, Routes } from "react-router-dom";
 import { lazy } from "react";
 import LeaveRoomButton from "@/features/leave-room/ui/LeaveRoomButton";
 import ButtonLogout from "@/features/guest-session/ui/ButtonLogout";
+import LeaveGameButton from "@/features/leave-game/ui/LeaveGameButton";
 import { routes } from "@/shared/constants/routes";
 import Button from "@/shared/ui/Button";
 import MainLayout from "../layouts/MainLayout";
 import PageSuspense from "./PageSuspense";
 import SessionGuard from "../layouts/SessionGuard";
 import SocketConnection from "../layouts/SocketConnection";
-import LeaveGameButton from "@/features/leave-game/ui/LeaveGameButton";
 
 const WelcomePage = lazy(() => import("@/pages/WelcomePage"));
 const RoomPage = lazy(() => import("@/pages/RoomPage"));
@@ -16,6 +16,7 @@ const RoomsPage = lazy(() => import("@/pages/RoomsPage"));
 const CreateRoomPage = lazy(() => import("@/pages/CreateRoomPage"));
 const InviteRoomPage = lazy(() => import("@/pages/InviteRoomPage"));
 const GamePage = lazy(() => import("@/pages/GamePage"));
+const UpdateRoomPage = lazy(() => import("@/pages/UpdateRoomPage"));
 
 const NotFoundPage = lazy(() => import("@/pages/NotFoundPage"));
 
@@ -70,6 +71,17 @@ const Routing = () => {
             }
           >
             <Route index element={<CreateRoomPage />} />
+          </Route>
+
+          <Route
+            path={routes.updateRoom}
+            element={
+              <PageSuspense>
+                <MainLayout />
+              </PageSuspense>
+            }
+          >
+            <Route index element={<UpdateRoomPage />} />
           </Route>
 
           <Route

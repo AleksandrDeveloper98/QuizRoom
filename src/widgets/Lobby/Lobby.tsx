@@ -37,6 +37,11 @@ const Lobby = (props: TLobbyProps) => {
           <div className="lobby__sidebar">
             <LobbyParametersCard roomParams={room} />
             <Button onClick={handleCopyRoomLink}>Скопировать ссылку</Button>
+            {currentPlayer.role === "host" && (
+              <Button to={routes.updateRoomById(roomId)}>
+                Изменить настройки комнаты
+              </Button>
+            )}
           </div>
         </div>
       </div>
