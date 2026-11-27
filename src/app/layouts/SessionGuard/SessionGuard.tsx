@@ -5,8 +5,6 @@ import { routes } from "@/shared/constants/routes";
 import ErrorMessage from "@/shared/ui/ErrorMessage";
 import type { TSessionGuardProps } from "./types";
 
-import "./SessionGuard.scss";
-
 const SessionGuard = (props: TSessionGuardProps) => {
   const { access } = props;
   const {
