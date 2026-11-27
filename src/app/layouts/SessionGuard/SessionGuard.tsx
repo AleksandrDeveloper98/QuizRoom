@@ -2,7 +2,7 @@ import { matchPath, Navigate, Outlet, useLocation } from "react-router-dom";
 import { useCurrentGuestPlayer } from "@/entities/guestPlayer/api/guestPlayerQueries";
 import PageLoader from "@/shared/ui/PageLoader";
 import { routes } from "@/shared/constants/routes";
-import Button from "@/shared/ui/Button";
+import ErrorMessage from "@/shared/ui/ErrorMessage";
 import type { TSessionGuardProps } from "./types";
 
 import "./SessionGuard.scss";
@@ -13,6 +13,8 @@ const SessionGuard = (props: TSessionGuardProps) => {
     data: currentGuestPlayer,
     isPending,
     isError,
+    isFetching,
+    refetch,
   } = useCurrentGuestPlayer();
 
   const location = useLocation();
@@ -23,12 +25,12 @@ const SessionGuard = (props: TSessionGuardProps) => {
 
   if (isError) {
     return (
-      <div className="session-guard">
-        <p className="session-guard__info">Не удалось проверить сессию</p>
-        <Button className="session-guard__action" to={routes.welcome}>
-          Вернуться назад
-        </Button>
-      </div>
+      <ErrorMessage
+        title="Не удалось проверить сессию"
+        description="Проверь подключение к интернету."
+        onRetry={() => void refetch()}
+        isRetrying={isFetching}
+      />
     );
   }
 
